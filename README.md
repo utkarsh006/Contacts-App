@@ -15,4 +15,4 @@
 
 ||||||
 |--|--|--|--|--|
-|API Integration(Retrofit)|Jetpack Navigation|Coroutines|Dagger Hilt|Image Loading through Coil|
+|Android Jetpack|MVVM Architecture|Jetpack Navigation|Coroutines & Flows|Dagger Hilt|
