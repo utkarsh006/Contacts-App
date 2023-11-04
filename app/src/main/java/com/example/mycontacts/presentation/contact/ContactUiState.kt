@@ -19,7 +19,7 @@ fun ContactUiState.toContact(): Contact = Contact(
     lastName = lastName,
     address = address,
     gender = gender,
-    dob = dob!!
+    dob = dob
 )
 
 fun Contact.toContactUiState(actionEnable: Boolean = false): ContactUiState = ContactUiState(

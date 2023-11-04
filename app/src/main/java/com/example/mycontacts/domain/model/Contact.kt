@@ -16,10 +16,10 @@ data class Contact(
     val lastName: String,
     val address: String,
     val gender: String,
-    val dob: LocalDateTime = LocalDateTime.now(),
+    val dob: LocalDateTime? = null,
 ) : Parcelable {
-    val createdDateFormatted : String
-        get() = dob.format(DateTimeFormatter.ofPattern("dd/mm/yyy"))
+    val createdDateFormatted: String
+        get() = dob?.format(DateTimeFormatter.ofPattern("dd/mm/yyy")) ?: ""
 
     fun doesMatchSearchQuery(query: String): Boolean {
         val matchingCombinations = listOf(
