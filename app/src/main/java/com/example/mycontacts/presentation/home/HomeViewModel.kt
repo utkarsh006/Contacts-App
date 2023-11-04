@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
@@ -17,7 +16,7 @@ data class HomeUiState(
 )
 
 class HomeViewModel(
-    contactsRepository: ContactsRepository
+    contactsRepository: ContactsRepository,
 ) : ViewModel() {
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
@@ -25,26 +24,20 @@ class HomeViewModel(
     private val _isSearching = MutableStateFlow(false)
     val isSearching = _isSearching.asStateFlow()
 
-    private val _persons = MutableStateFlow(listOf<Contact>())
-    val persons = searchText.combine(_persons) { text, persons ->
-        if (text.isBlank()) {
-            persons
-        } else {
-            persons.filter {
-                it.doesMatchSearchQuery(text)
-            }
-        }
-
-    }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5000),
-        _persons.value
-    )
-
-
     //This fn will be called from UI if user types something
     fun onSearchTextChange(text: String) {
         _searchText.value = text
+    }
+
+    fun searchUser(contactList: List<Contact>): List<Contact> {
+        val list = if (searchText.value.isEmpty()) {
+            contactList
+        } else {
+            contactList.filter {
+                it.doesMatchSearchQuery(searchText.value)
+            }
+        }
+        return list
     }
 
     val homeUiState: StateFlow<HomeUiState> =

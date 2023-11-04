@@ -17,8 +17,7 @@ data class Contact(
             "$firstName$lastName",
             "$firstName $lastName",
             "${firstName.first()} ${lastName.first()}",
-
-            )
+        )
         return matchingCombinations.any() {
             it.contains(query, ignoreCase = true)
         }

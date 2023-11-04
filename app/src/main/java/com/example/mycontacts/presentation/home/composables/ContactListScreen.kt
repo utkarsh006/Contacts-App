@@ -43,7 +43,6 @@ fun ContactList(
 ) {
     val viewModel = viewModel<HomeViewModel>()
     val searchText by viewModel.searchText.collectAsState()
-    val persons by viewModel.persons.collectAsState()
     val isSearching by viewModel.isSearching.collectAsState()
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -88,13 +87,15 @@ fun ContactList(
         )
         Spacer(modifier = Modifier.height(15.dp))
 
+        val filteredList = viewModel.searchUser(contactList)
+
         if (isSearching) {
             Box(modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
         } else {
             LazyColumn() {
-                items(items = contactList, key = { it.id }) { contact ->
+                items(items = filteredList, key = { it.id }) { contact ->
                     ContactItems(
                         contact = contact,
                         onContactClick = onContactClick
