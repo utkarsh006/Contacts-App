@@ -1,6 +1,7 @@
 package com.example.mycontacts.presentation.contact
 
 import com.example.mycontacts.domain.model.Contact
+import java.time.LocalDateTime
 
 data class ContactUiState(
     val id: Int = 0,
@@ -8,6 +9,7 @@ data class ContactUiState(
     val lastName: String = "",
     val address: String = "",
     val gender: String = "",
+    val dob: LocalDateTime ?= null,
     val actionEnable: Boolean = false
 )
 
@@ -17,6 +19,7 @@ fun ContactUiState.toContact(): Contact = Contact(
     lastName = lastName,
     address = address,
     gender = gender,
+    dob = dob!!
 )
 
 fun Contact.toContactUiState(actionEnable: Boolean = false): ContactUiState = ContactUiState(
