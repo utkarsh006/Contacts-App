@@ -45,8 +45,9 @@ fun HomeBody(
     } else {
         ContactList(
             contactList = contactList,
-            onContactClick = { onContactClick(it.id) }
-        )
+            onContactClick = { onContactClick(it.id) },
+
+            )
     }
 }
 
@@ -55,6 +56,6 @@ fun HomeBody(
 fun HomeBodyPreview() {
     HomeBody(
         contactList = listOf(),
-        onContactClick = {}
+        onContactClick = {},
     )
 }
