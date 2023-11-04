@@ -28,6 +28,7 @@ fun Contact.toContactUiState(actionEnable: Boolean = false): ContactUiState = Co
     lastName = lastName,
     address = address,
     gender = gender,
+    dob = dob,
     actionEnable = actionEnable
 )
 
