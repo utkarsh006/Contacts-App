@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -95,25 +94,14 @@ fun ContactList(
             }
         } else {
             LazyColumn() {
-                items(items = persons) { person ->
-                    Text(
-                        text = "${person.firstName} ${person.lastName}",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 16.dp)
+                items(items = contactList, key = { it.id }) { contact ->
+                    ContactItems(
+                        contact = contact,
+                        onContactClick = onContactClick
                     )
+                    Divider()
                 }
             }
-
-//            LazyColumn() {
-//                items(items = contactList, key = { it.id }) { contact ->
-//                    ContactItems(
-//                        contact = contact,
-//                        onContactClick = onContactClick
-//                    )
-//                    Divider()
-//                }
-//            }
         }
     }
 
