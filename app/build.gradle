@@ -1,7 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp' version "1.9.10-1.0.13"
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -63,12 +64,12 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:2.6.0"
-    ksp "androidx.room:room-compiler:2.6.0"
+    kapt "androidx.room:room-compiler:2.6.0"
     implementation "androidx.room:room-ktx:2.6.0"
 
     // DaggerHilt
     implementation 'com.google.dagger:hilt-android:2.48'
-    ksp "com.google.dagger:hilt-android-compiler:2.48"
+    kapt "com.google.dagger:hilt-android-compiler:2.48"
 
     // Testing
     androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
