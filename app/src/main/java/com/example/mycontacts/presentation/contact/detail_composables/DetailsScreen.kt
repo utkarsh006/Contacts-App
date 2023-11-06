@@ -14,12 +14,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.AppViewModelProvider
-import com.example.mycontacts.presentation.contact.viewmodels.DetailsScreenViewModel
 import com.example.mycontacts.navigation.NavigationDestination
+import com.example.mycontacts.presentation.contact.viewmodels.DetailsScreenViewModel
 import kotlinx.coroutines.launch
 
 
@@ -35,7 +34,7 @@ fun DetailsScreen(
     navigateToEditContact: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetailsScreenViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
     val uiState = viewModel.uiState.collectAsState()
     val coroutineScope = rememberCoroutineScope()

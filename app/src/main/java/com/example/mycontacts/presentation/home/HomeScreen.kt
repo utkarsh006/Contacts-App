@@ -14,12 +14,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.AppViewModelProvider
-import com.example.mycontacts.presentation.home.composables.HomeBody
 import com.example.mycontacts.navigation.NavigationDestination
+import com.example.mycontacts.presentation.home.composables.HomeBody
 
 object HomeScreenDestination : NavigationDestination {
     override val route = "home"
@@ -31,7 +30,7 @@ fun HomeScreen(
     navigateToEntryScreen: () -> Unit,
     navigateToUpdateScreen: (Int) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val homeUiState by viewModel.homeUiState.collectAsState()
 

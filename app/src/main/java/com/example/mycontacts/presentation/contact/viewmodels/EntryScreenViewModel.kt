@@ -8,8 +8,11 @@ import com.example.mycontacts.presentation.contact.ContactUiState
 import com.example.mycontacts.presentation.contact.isValid
 import com.example.mycontacts.presentation.contact.toContact
 import com.example.mycontacts.domain.repository.ContactsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class EntryScreenViewModel(
+@HiltViewModel
+class EntryScreenViewModel @Inject constructor(
     private val contactsRepository: ContactsRepository
 ): ViewModel() {
     var contactUiState by mutableStateOf(ContactUiState())
