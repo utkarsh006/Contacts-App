@@ -3,10 +3,18 @@ package com.example.mycontacts.presentation.contact.entry_composables
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExposedDropdownMenuBox
+import androidx.compose.material.ExposedDropdownMenuDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -16,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactUiState
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ContactInputForm(
     contactUiState: ContactUiState,
@@ -70,19 +79,48 @@ fun ContactInputForm(
             )
         )
 
-        TextField(
-            value = contactUiState.gender,
-            onValueChange = { onValueChange(contactUiState.copy(gender = it)) },
-            label = { Text(stringResource(R.string.gender)) },
-            modifier = modifier.fillMaxWidth(),
-            enabled = enabled,
-            textStyle = TextStyle(color = Color.Black),
-            singleLine = true,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
+        val genderList = arrayOf("Male", "Female", "Other")
+        var expanded by remember { mutableStateOf(false) }
+
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = {
+                expanded = !expanded
+            }
+        ) {
+            TextField(
+                value = contactUiState.gender,
+                onValueChange = {},
+                readOnly = true,
+                label = { Text(stringResource(R.string.gender)) },
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                modifier = modifier.fillMaxWidth(),
+                enabled = enabled,
+                textStyle = TextStyle(color = Color.Black),
+                singleLine = true,
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent,
+                )
             )
-        )
+            if(enabled) {
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                ) {
+                    genderList.forEach { item ->
+                        DropdownMenuItem(
+                            onClick = {
+                                onValueChange(contactUiState.copy(gender = item))
+                                expanded = false
+                            }) {
+                            Text(text = item)
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
 
