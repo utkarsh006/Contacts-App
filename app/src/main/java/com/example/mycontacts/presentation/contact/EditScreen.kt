@@ -8,13 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.AppViewModelProvider
+import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.contact.entry_composables.EntryBody
 import com.example.mycontacts.presentation.contact.viewmodels.EditScreenViewModel
-import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
 
@@ -30,7 +29,7 @@ fun EditScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: EditScreenViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: EditScreenViewModel = hiltViewModel()
 ){
     val coroutineScope = rememberCoroutineScope()
 

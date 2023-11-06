@@ -10,18 +10,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.viewmodels.DetailsScreenViewModel
-import com.example.mycontacts.AppViewModelProvider
 
 @Composable
 fun DeleteConfirmationDialog(
     onDeleteConfirm: () -> Unit,
     onDeleteCancel: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetailsScreenViewModel = viewModel(factory = AppViewModelProvider.Factory)
-){
+    viewModel: DetailsScreenViewModel = hiltViewModel()
+) {
+
     val uiState by viewModel.uiState.collectAsState()
 
     AlertDialog(

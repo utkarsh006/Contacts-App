@@ -8,9 +8,12 @@ import com.example.mycontacts.domain.repository.ContactsRepository
 import com.example.mycontacts.presentation.contact.detail_composables.DetailsScreenDestination
 import com.example.mycontacts.presentation.contact.toContact
 import com.example.mycontacts.presentation.contact.toContactUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
 
-class DetailsScreenViewModel(
+@HiltViewModel
+class DetailsScreenViewModel @Inject constructor(
     state: SavedStateHandle,
     private val contactsRepository: ContactsRepository
 ): ViewModel() {

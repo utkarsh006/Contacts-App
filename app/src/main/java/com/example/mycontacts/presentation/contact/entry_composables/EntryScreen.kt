@@ -8,12 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.AppViewModelProvider
-import com.example.mycontacts.presentation.contact.viewmodels.EntryScreenViewModel
 import com.example.mycontacts.navigation.NavigationDestination
+import com.example.mycontacts.presentation.contact.viewmodels.EntryScreenViewModel
 import kotlinx.coroutines.launch
 
 object EntryScreenDestination: NavigationDestination {
@@ -26,7 +25,7 @@ fun EntryScreen(
     modifier: Modifier = Modifier,
     onNavigateUp: () -> Unit,
     navigateBack: () -> Unit,
-    viewModel: EntryScreenViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    viewModel: EntryScreenViewModel = hiltViewModel()
 ){
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
