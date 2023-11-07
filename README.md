@@ -6,7 +6,7 @@
 - **Add Contacts:** Easily add new contacts with details such as name, phone number, email, and more.
 - **Edit Contacts:** Update and modify existing contact information as needed.
 - **Delete Contacts:** Remove contacts that are no longer relevant or necessary.
-- View all your contacts in a user-friendly list format.
+- **Search Contacts:** Search contacts that are lost in your big list of friends.
 - **Details View:** Get comprehensive information about a specific contact, including their photo if available.
 - **User-Friendly UI:** The app boasts an intuitive user interface for seamless navigation.
 - **Data Persistence:** Contacts are saved locally, ensuring your information is always accessible.
