@@ -49,7 +49,7 @@ fun EntryBody(
                         width = 2.dp,
                         color = MaterialTheme.colors.onPrimary,
                         shape = CircleShape
-                    ),
+                    )
             )
         }
 

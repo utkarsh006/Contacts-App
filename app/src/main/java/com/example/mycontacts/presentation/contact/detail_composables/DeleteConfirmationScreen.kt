@@ -21,7 +21,6 @@ fun DeleteConfirmationDialog(
     modifier: Modifier = Modifier,
     viewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
-
     val uiState by viewModel.uiState.collectAsState()
 
     AlertDialog(
