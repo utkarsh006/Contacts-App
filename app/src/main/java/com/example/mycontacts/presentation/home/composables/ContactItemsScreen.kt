@@ -69,8 +69,6 @@ fun ContactItems(
                     modifier = modifier.align(Alignment.Start)
                 )
             }
-
-
         }
     }
 }
@@ -85,6 +83,7 @@ fun ContactPreview() {
             "Saxena",
             "GT Road",
             "Male"
-        ), onContactClick = {}
+        ),
+        onContactClick = {}
     )
 }

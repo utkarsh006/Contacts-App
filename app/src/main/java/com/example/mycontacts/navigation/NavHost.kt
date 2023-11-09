@@ -16,7 +16,6 @@ import com.example.mycontacts.presentation.contact.entry_composables.EntryScreen
 import com.example.mycontacts.presentation.home.HomeScreen
 import com.example.mycontacts.presentation.home.HomeScreenDestination
 
-
 @Composable
 fun ContactsNavHost(
     navController: NavHostController,
@@ -31,7 +30,7 @@ fun ContactsNavHost(
             HomeScreen(
                 navigateToEntryScreen = { navController.navigate(EntryScreenDestination.route) },
                 navigateToUpdateScreen = {
-                    navController.navigate("${DetailsScreenDestination.route}/${it}")
+                    navController.navigate("${DetailsScreenDestination.route}/$it")
                 }
             )
         }
@@ -45,21 +44,25 @@ fun ContactsNavHost(
 
         composable(
             route = DetailsScreenDestination.routeWithArgs,
-            arguments = listOf(navArgument(DetailsScreenDestination.contactIdArg) {
-                type = NavType.IntType
-            })
+            arguments = listOf(
+                navArgument(DetailsScreenDestination.contactIdArg) {
+                    type = NavType.IntType
+                }
+            )
         ) {
             DetailsScreen(
-                navigateToEditContact = { navController.navigate("${EditScreenDestination.route}/${it}") },
+                navigateToEditContact = { navController.navigate("${EditScreenDestination.route}/$it") },
                 navigateBack = { navController.navigateUp() }
             )
         }
 
         composable(
             route = EditScreenDestination.routeWithArgs,
-            arguments = listOf(navArgument(EditScreenDestination.contactIdArg) {
-                type = NavType.IntType
-            })
+            arguments = listOf(
+                navArgument(EditScreenDestination.contactIdArg) {
+                    type = NavType.IntType
+                }
+            )
         ) {
             EditScreen(
                 navigateBack = { navController.popBackStack() },

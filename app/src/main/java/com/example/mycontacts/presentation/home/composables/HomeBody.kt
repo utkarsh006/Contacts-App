@@ -41,13 +41,11 @@ fun HomeBody(
                 fontSize = 20.sp,
             )
         }
-
     } else {
         ContactList(
             contactList = contactList,
             onContactClick = { onContactClick(it.id) },
-
-            )
+        )
     }
 }
 
