@@ -26,7 +26,7 @@ fun DeleteConfirmationDialog(
     AlertDialog(
         onDismissRequest = {},
         title = { Text(stringResource(R.string.delete_this_contact)) },
-        text = { Text("${uiState.firstName} ${uiState.lastName}  will be removed from your Contacts") },
+        text = { Text("${uiState.firstName} ${uiState.lastName} will be removed from your Contacts") },
         modifier = modifier.padding(16.dp),
         dismissButton = {
             TextButton(onClick = onDeleteCancel) {
