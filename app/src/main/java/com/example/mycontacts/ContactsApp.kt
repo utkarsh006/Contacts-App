@@ -17,7 +17,7 @@ import com.example.mycontacts.navigation.ContactsNavHost
 
 @Composable
 fun ContactsApp(navController: NavHostController = rememberNavController()) {
-    ContactsNavHost(navController = navController)
+    ContactsNavHost(navController = navController, onDelete = {})
 }
 
 @Composable

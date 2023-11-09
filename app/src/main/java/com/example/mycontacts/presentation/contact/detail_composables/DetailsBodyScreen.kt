@@ -11,9 +11,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,8 +42,6 @@ fun DetailsBody(
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
-
     Column(
         modifier = modifier
             .padding(16.dp)
@@ -66,23 +69,7 @@ fun DetailsBody(
             enabled = false,
         )
 
-        OutlinedButton(
-            onClick = { deleteConfirmationRequired = true },
-            modifier = modifier
-                .fillMaxWidth()
-        ) {
-            Text(text = stringResource(R.string.delete_button))
-        }
 
-        if (deleteConfirmationRequired) {
-            DeleteConfirmationDialog(
-                onDeleteConfirm = {
-                    deleteConfirmationRequired = false
-                    onDelete()
-                },
-                onDeleteCancel = { deleteConfirmationRequired = false }
-            )
-        }
     }
 }
 

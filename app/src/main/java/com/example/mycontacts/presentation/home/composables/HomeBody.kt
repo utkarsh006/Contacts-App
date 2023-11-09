@@ -22,6 +22,7 @@ import com.example.mycontacts.domain.model.Contact
 fun HomeBody(
     contactList: List<Contact>,
     onContactClick: (Int) -> Unit,
+    onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (contactList.isEmpty()) {
@@ -45,6 +46,7 @@ fun HomeBody(
         ContactList(
             contactList = contactList,
             onContactClick = { onContactClick(it.id) },
+            onDelete = onDelete
         )
     }
 }
@@ -55,5 +57,6 @@ fun HomeBodyPreview() {
     HomeBody(
         contactList = listOf(),
         onContactClick = {},
+        onDelete = {}
     )
 }

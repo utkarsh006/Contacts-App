@@ -19,6 +19,7 @@ import com.example.mycontacts.presentation.home.HomeScreenDestination
 @Composable
 fun ContactsNavHost(
     navController: NavHostController,
+    onDelete: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
@@ -31,7 +32,8 @@ fun ContactsNavHost(
                 navigateToEntryScreen = { navController.navigate(EntryScreenDestination.route) },
                 navigateToUpdateScreen = {
                     navController.navigate("${DetailsScreenDestination.route}/$it")
-                }
+                },
+                onDelete = onDelete
             )
         }
 

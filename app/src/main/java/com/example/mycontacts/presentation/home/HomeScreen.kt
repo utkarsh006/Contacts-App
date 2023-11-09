@@ -30,6 +30,7 @@ fun HomeScreen(
     navigateToEntryScreen: () -> Unit,
     navigateToUpdateScreen: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    onDelete: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val homeUiState by viewModel.homeUiState.collectAsState()
@@ -57,6 +58,7 @@ fun HomeScreen(
         HomeBody(
             contactList = homeUiState.contactList,
             onContactClick = navigateToUpdateScreen,
+            onDelete = onDelete,
             modifier = modifier
                 .padding(innerPadding)
                 .background(MaterialTheme.colors.background)

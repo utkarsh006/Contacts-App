@@ -39,6 +39,7 @@ import com.example.mycontacts.presentation.home.HomeViewModel
 fun ContactList(
     contactList: List<Contact>,
     onContactClick: (Contact) -> Unit,
+    onDelete: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel = viewModel<HomeViewModel>()
@@ -98,7 +99,8 @@ fun ContactList(
                 items(items = filteredList, key = { it.id }) { contact ->
                     ContactItems(
                         contact = contact,
-                        onContactClick = onContactClick
+                        onContactClick = onContactClick,
+                        onDelete = onDelete,
                     )
                     Divider()
                 }
@@ -115,5 +117,6 @@ fun ContactListPreview() {
     ContactList(
         contactList = listOf(),
         onContactClick = {},
+        onDelete = {}
     )
 }
