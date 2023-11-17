@@ -2,6 +2,7 @@ package com.example.mycontacts.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
 @Entity(tableName = "contacts")
 data class Contact(
@@ -11,6 +12,7 @@ data class Contact(
     val lastName: String,
     val address: String,
     val gender: String,
+    val date: Date?
 ) {
     fun doesMatchSearchQuery(query: String): Boolean {
         val matchingCombinations = listOf(

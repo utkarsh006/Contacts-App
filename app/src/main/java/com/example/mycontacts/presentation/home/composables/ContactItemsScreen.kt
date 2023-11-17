@@ -73,17 +73,18 @@ fun ContactItems(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ContactPreview() {
-    ContactItems(
-        contact = Contact(
-            1,
-            "Utkarsh",
-            "Saxena",
-            "GT Road",
-            "Male"
-        ),
-        onContactClick = {}
-    )
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ContactPreview() {
+//    ContactItems(
+//        contact = Contact(
+//            1,
+//            "Utkarsh",
+//            "Saxena",
+//            "GT Road",
+//            "Male",
+//
+//        ),
+//        onContactClick = {}
+//    )
+//}

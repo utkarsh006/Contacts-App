@@ -1,5 +1,8 @@
 package com.example.mycontacts.presentation.contact.entry_composables
 
+import android.app.DatePickerDialog
+import android.content.Context
+import android.widget.DatePicker
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactUiState
+import java.util.Calendar
+import java.util.Date
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -33,8 +38,7 @@ fun ContactInputForm(
     enabled: Boolean = true
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         TextField(
@@ -103,7 +107,7 @@ fun ContactInputForm(
                     focusedIndicatorColor = Color.Transparent,
                 )
             )
-            if(enabled) {
+            if (enabled) {
                 ExposedDropdownMenu(
                     expanded = expanded,
                     onDismissRequest = { expanded = false },
@@ -121,7 +125,32 @@ fun ContactInputForm(
             }
 
         }
+
+
     }
+}
+
+
+@Composable
+fun datePickerDialog(
+    context: Context,
+    onDateSelected: (Date) -> Unit,
+): DatePickerDialog {
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+    calendar.time = Date()
+
+    val mDatePickerDialog = DatePickerDialog(
+        context,
+        { _: DatePicker, mYear: Int, mMonth: Int, mDayofMonth: Int ->
+            val calender = Calendar.getInstance()
+            calendar.set(mYear, mMonth, mDayofMonth)
+            onDateSelected.invoke(calender.time)
+        }, year, month, day
+    )
+    return mDatePickerDialog
 }
 
 @Preview(showBackground = true)
