@@ -6,6 +6,7 @@ import android.widget.DatePicker
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuBox
@@ -20,12 +21,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactUiState
+import java.text.DateFormat
 import java.util.Calendar
 import java.util.Date
 
@@ -37,6 +41,8 @@ fun ContactInputForm(
     onValueChange: (ContactUiState) -> Unit = {},
     enabled: Boolean = true
 ) {
+    var isDatePickerDialogShowing by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -126,8 +132,34 @@ fun ContactInputForm(
 
         }
 
+        ClickableText(
+            text = AnnotatedString(
+                "Select Date: ${
+                    contactUiState.date?.let {
+                        DateFormat.getDateInstance().format(it)
+                    }
+                }"
+            ),
+            onClick = {
+                isDatePickerDialogShowing = true
+            },
+            modifier = Modifier.fillMaxWidth(),
+            style = TextStyle(color = Color.Black)
+        )
 
+        // Showing DatePickerDialog
+        if (isDatePickerDialogShowing) {
+            datePickerDialog(
+                context = LocalContext.current,
+                onDateSelected = {
+                    onValueChange(contactUiState.copy(date = it))
+                    isDatePickerDialogShowing = false
+                }
+            ).show()
+        }
     }
+
+
 }
 
 
