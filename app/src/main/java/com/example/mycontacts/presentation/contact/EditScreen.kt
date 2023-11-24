@@ -11,18 +11,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.contact.entry_composables.EntryBody
 import com.example.mycontacts.presentation.contact.viewmodels.EditScreenViewModel
 import kotlinx.coroutines.launch
 
 
-object EditScreenDestination: NavigationDestination {
-    override val route = "contact_edit"
-    override val titleRes = R.string.edit_contact
-    const val contactIdArg = "contactId"
-    val routeWithArgs =  "$route/{$contactIdArg}"
-}
+//object EditScreenDestination: NavigationDestination {
+//    override val route = "contact_edit"
+//    override val titleRes = R.string.edit_contact
+//    const val contactIdArg = "contactId"
+//    val routeWithArgs =  "$route/{$contactIdArg}"
+//}
 
 @Composable
 fun EditScreen(
@@ -36,7 +35,7 @@ fun EditScreen(
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(EditScreenDestination.titleRes),
+                title = stringResource(R.string.edit_contact),
                 navigateBack = true,
                 navigateUp = onNavigateUp
             )

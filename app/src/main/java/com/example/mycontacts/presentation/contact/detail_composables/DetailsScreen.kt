@@ -17,17 +17,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.contact.viewmodels.DetailsScreenViewModel
 import kotlinx.coroutines.launch
 
 
-object DetailsScreenDestination : NavigationDestination {
-    override val route = "contact_details"
-    override val titleRes = R.string.contact_details
-    const val contactIdArg = "contactId"
-    val routeWithArgs = "$route/{$contactIdArg}"
-}
+//object DetailsScreenDestination : NavigationDestination {
+//    override val route = "contact_details"
+//    override val titleRes = R.string.contact_details
+//    const val contactIdArg = "contactId"
+//    val routeWithArgs = "$route/{$contactIdArg}"
+//}
 
 @Composable
 fun DetailsScreen(
@@ -42,7 +41,7 @@ fun DetailsScreen(
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(DetailsScreenDestination.titleRes),
+                title = stringResource(R.string.contact_details),
                 navigateBack = true,
                 navigateUp = navigateBack
             )

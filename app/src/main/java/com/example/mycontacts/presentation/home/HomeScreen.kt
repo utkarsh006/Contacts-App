@@ -17,13 +17,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.home.composables.HomeBody
 
-object HomeScreenDestination : NavigationDestination {
-    override val route = "home"
-    override val titleRes = R.string.my_contacts
-}
+//object HomeScreenDestination : NavigationDestination {
+//    override val route = "home"
+//    override val titleRes = R.string.my_contacts
+//}
 
 @Composable
 fun HomeScreen(
@@ -37,7 +36,7 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(HomeScreenDestination.titleRes),
+                title = stringResource(R.string.my_contacts),
                 navigateBack = false
             )
         },

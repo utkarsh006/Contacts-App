@@ -11,14 +11,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.contact.viewmodels.EntryScreenViewModel
 import kotlinx.coroutines.launch
 
-object EntryScreenDestination: NavigationDestination {
-    override val route = "contact_entry"
-    override val titleRes = R.string.add_contact
-}
+//object EntryScreenDestination: NavigationDestination {
+//    override val route = "contact_entry"
+//    override val titleRes = R.string.add_contact
+//}
 
 @Composable
 fun EntryScreen(
@@ -26,12 +25,12 @@ fun EntryScreen(
     onNavigateUp: () -> Unit,
     navigateBack: () -> Unit,
     viewModel: EntryScreenViewModel = hiltViewModel()
-){
+) {
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(EntryScreenDestination.titleRes),
+                title = stringResource(R.string.add_contact),
                 navigateBack = true,
                 navigateUp = onNavigateUp
             )

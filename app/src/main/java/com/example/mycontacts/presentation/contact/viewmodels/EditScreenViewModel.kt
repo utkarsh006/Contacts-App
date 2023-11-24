@@ -6,12 +6,12 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mycontacts.domain.repository.ContactsRepository
+import com.example.mycontacts.navigation.NavScreen
 import com.example.mycontacts.presentation.contact.ContactUiState
-import com.example.mycontacts.presentation.contact.EditScreenDestination
 import com.example.mycontacts.presentation.contact.isValid
 import com.example.mycontacts.presentation.contact.toContact
 import com.example.mycontacts.presentation.contact.toContactUiState
-import com.example.mycontacts.domain.repository.ContactsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
@@ -27,7 +27,7 @@ class EditScreenViewModel @Inject constructor(
     var contactUiState by mutableStateOf(ContactUiState())
         private set
 
-    private val contactId: Int = checkNotNull(savedStateHandle[EditScreenDestination.contactIdArg])
+    private val contactId: Int = checkNotNull(savedStateHandle[NavScreen.EditScreen.route])
 
     init {
         viewModelScope.launch {
