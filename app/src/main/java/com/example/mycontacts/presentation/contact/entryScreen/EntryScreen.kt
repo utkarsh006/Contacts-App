@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact
+package com.example.mycontacts.presentation.contact.entryScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
@@ -12,31 +12,25 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
 import com.example.mycontacts.navigation.NavigationDestination
-import com.example.mycontacts.presentation.contact.entry_composables.EntryBody
-import com.example.mycontacts.presentation.contact.viewmodels.EditScreenViewModel
 import kotlinx.coroutines.launch
 
-
-object EditScreenDestination: NavigationDestination {
-    override val route = "contact_edit"
-    override val titleRes = R.string.edit_contact
-    const val contactIdArg = "contactId"
-    val routeWithArgs =  "$route/{$contactIdArg}"
+object EntryScreenDestination: NavigationDestination {
+    override val route = "contact_entry"
+    override val titleRes = R.string.add_contact
 }
 
 @Composable
-fun EditScreen(
-    navigateBack: () -> Unit,
-    onNavigateUp: () -> Unit,
+fun EntryScreen(
     modifier: Modifier = Modifier,
-    viewModel: EditScreenViewModel = hiltViewModel()
+    onNavigateUp: () -> Unit,
+    navigateBack: () -> Unit,
+    viewModel: EntryScreenViewModel = hiltViewModel()
 ){
     val coroutineScope = rememberCoroutineScope()
-
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(EditScreenDestination.titleRes),
+                title = stringResource(EntryScreenDestination.titleRes),
                 navigateBack = true,
                 navigateUp = onNavigateUp
             )
@@ -47,7 +41,7 @@ fun EditScreen(
             onContactValueChange = viewModel::updateUiState,
             onSaveClick = {
                 coroutineScope.launch {
-                    viewModel.updateContact()
+                    viewModel.saveContact()
                     navigateBack()
                 }
             },

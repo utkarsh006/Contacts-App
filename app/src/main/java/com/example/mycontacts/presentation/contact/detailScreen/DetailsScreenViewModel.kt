@@ -1,11 +1,10 @@
-package com.example.mycontacts.presentation.contact.viewmodels
+package com.example.mycontacts.presentation.contact.detailScreen
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mycontacts.presentation.contact.ContactUiState
 import com.example.mycontacts.domain.repository.ContactsRepository
-import com.example.mycontacts.presentation.contact.detail_composables.DetailsScreenDestination
 import com.example.mycontacts.presentation.contact.toContact
 import com.example.mycontacts.presentation.contact.toContactUiState
 import dagger.hilt.android.lifecycle.HiltViewModel

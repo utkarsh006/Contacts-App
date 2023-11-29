@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.home.composables
+package com.example.mycontacts.presentation.homeScreen.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mycontacts.domain.model.Contact
-import com.example.mycontacts.presentation.home.HomeViewModel
+import com.example.mycontacts.presentation.homeScreen.HomeViewModel
 
 @Composable
 fun ContactList(

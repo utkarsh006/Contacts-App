@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.viewmodels
+package com.example.mycontacts.presentation.contact.editScreen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,7 +7,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mycontacts.presentation.contact.ContactUiState
-import com.example.mycontacts.presentation.contact.EditScreenDestination
 import com.example.mycontacts.presentation.contact.isValid
 import com.example.mycontacts.presentation.contact.toContact
 import com.example.mycontacts.presentation.contact.toContactUiState

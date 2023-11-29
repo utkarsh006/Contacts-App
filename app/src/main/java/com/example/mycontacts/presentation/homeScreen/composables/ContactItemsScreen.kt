@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.home.composables
+package com.example.mycontacts.presentation.homeScreen.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

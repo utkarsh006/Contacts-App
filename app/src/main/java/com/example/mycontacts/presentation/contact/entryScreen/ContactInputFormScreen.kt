@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.entry_composables
+package com.example.mycontacts.presentation.contact.entryScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

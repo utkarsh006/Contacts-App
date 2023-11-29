@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.viewmodels
+package com.example.mycontacts.presentation.contact.entryScreen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

@@ -7,14 +7,14 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.mycontacts.presentation.contact.EditScreen
-import com.example.mycontacts.presentation.contact.EditScreenDestination
-import com.example.mycontacts.presentation.contact.detail_composables.DetailsScreen
-import com.example.mycontacts.presentation.contact.detail_composables.DetailsScreenDestination
-import com.example.mycontacts.presentation.contact.entry_composables.EntryScreen
-import com.example.mycontacts.presentation.contact.entry_composables.EntryScreenDestination
-import com.example.mycontacts.presentation.home.HomeScreen
-import com.example.mycontacts.presentation.home.HomeScreenDestination
+import com.example.mycontacts.presentation.contact.editScreen.EditScreen
+import com.example.mycontacts.presentation.contact.editScreen.EditScreenDestination
+import com.example.mycontacts.presentation.contact.detailScreen.DetailsScreen
+import com.example.mycontacts.presentation.contact.detailScreen.DetailsScreenDestination
+import com.example.mycontacts.presentation.contact.entryScreen.EntryScreen
+import com.example.mycontacts.presentation.contact.entryScreen.EntryScreenDestination
+import com.example.mycontacts.presentation.homeScreen.HomeScreen
+import com.example.mycontacts.presentation.homeScreen.HomeScreenDestination
 
 @Composable
 fun ContactsNavHost(
