@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 
 object EditScreenDestination: NavigationDestination {
     override val route = "contact_edit"
-    override val titleRes = R.string.edit_contact
     const val contactIdArg = "contactId"
     val routeWithArgs =  "$route/{$contactIdArg}"
 }
@@ -35,7 +34,7 @@ fun EditScreen(
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(EditScreenDestination.titleRes),
+                title = stringResource(R.string.edit_contact),
                 navigateBack = true,
                 navigateUp = onNavigateUp
             )

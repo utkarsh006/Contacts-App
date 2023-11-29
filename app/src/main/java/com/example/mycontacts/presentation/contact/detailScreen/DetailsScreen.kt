@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 
 object DetailsScreenDestination : NavigationDestination {
     override val route = "contact_details"
-    override val titleRes = R.string.contact_details
     const val contactIdArg = "contactId"
     val routeWithArgs = "$route/{$contactIdArg}"
 }
@@ -41,7 +40,7 @@ fun DetailsScreen(
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(DetailsScreenDestination.titleRes),
+                title = stringResource(R.string.contact_details),
                 navigateBack = true,
                 navigateUp = navigateBack
             )

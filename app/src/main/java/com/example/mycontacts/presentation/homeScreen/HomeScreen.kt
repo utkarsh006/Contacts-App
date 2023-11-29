@@ -22,7 +22,6 @@ import com.example.mycontacts.presentation.homeScreen.composables.HomeBody
 
 object HomeScreenDestination : NavigationDestination {
     override val route = "home"
-    override val titleRes = R.string.my_contacts
 }
 
 @Composable
@@ -37,7 +36,7 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(HomeScreenDestination.titleRes),
+                title = stringResource(R.string.my_contacts),
                 navigateBack = false
             )
         },

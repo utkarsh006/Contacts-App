@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 
 object EntryScreenDestination: NavigationDestination {
     override val route = "contact_entry"
-    override val titleRes = R.string.add_contact
 }
 
 @Composable
@@ -30,7 +29,7 @@ fun EntryScreen(
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(EntryScreenDestination.titleRes),
+                title = stringResource(R.string.add_contact),
                 navigateBack = true,
                 navigateUp = onNavigateUp
             )
