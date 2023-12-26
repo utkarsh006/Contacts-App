@@ -15,19 +15,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
+import com.example.mycontacts.navigation.NavScreen
 import com.example.mycontacts.presentation.homeScreen.composables.HomeBody
 
-object HomeScreenDestination : NavigationDestination {
-    override val route = "home"
-}
 
 @Composable
 fun HomeScreen(
-    navigateToEntryScreen: () -> Unit,
-    navigateToUpdateScreen: (Int) -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -37,12 +34,12 @@ fun HomeScreen(
         topBar = {
             ContactsTopAppBar(
                 title = stringResource(R.string.my_contacts),
-                navigateBack = false
+                navController = navController
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToEntryScreen,
+                onClick = { navController.navigate(NavScreen.EntryScreen.route) },
                 modifier = modifier.navigationBarsPadding()
             ) {
                 Icon(
@@ -55,7 +52,7 @@ fun HomeScreen(
     ) { innerPadding ->
         HomeBody(
             contactList = homeUiState.contactList,
-            onContactClick = navigateToUpdateScreen,
+            navController = navController,
             modifier = modifier
                 .padding(innerPadding)
                 .background(MaterialTheme.colors.background)

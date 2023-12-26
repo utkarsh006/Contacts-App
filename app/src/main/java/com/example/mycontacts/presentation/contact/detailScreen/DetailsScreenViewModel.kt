@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mycontacts.presentation.contact.ContactUiState
 import com.example.mycontacts.domain.repository.ContactsRepository
+import com.example.mycontacts.navigation.NavScreen
 import com.example.mycontacts.presentation.contact.toContact
 import com.example.mycontacts.presentation.contact.toContactUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,7 @@ class DetailsScreenViewModel @Inject constructor(
     state: SavedStateHandle,
     private val contactsRepository: ContactsRepository
 ): ViewModel() {
-    private val contactId: Int = checkNotNull(state[DetailsScreenDestination.contactIdArg])
+    private val contactId: Int = checkNotNull(state[NavScreen.DetailsScreen.route])
 
     val uiState: StateFlow<ContactUiState> = contactsRepository.getContactStream(contactId)
         .filterNotNull()

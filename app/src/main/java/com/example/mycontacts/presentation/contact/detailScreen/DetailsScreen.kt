@@ -15,22 +15,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
 
-object DetailsScreenDestination : NavigationDestination {
-    override val route = "contact_details"
-    const val contactIdArg = "contactId"
-    val routeWithArgs = "$route/{$contactIdArg}"
-}
-
 @Composable
 fun DetailsScreen(
-    navigateToEditContact: (Int) -> Unit,
-    navigateBack: () -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
@@ -41,13 +34,12 @@ fun DetailsScreen(
         topBar = {
             ContactsTopAppBar(
                 title = stringResource(R.string.contact_details),
-                navigateBack = true,
-                navigateUp = navigateBack
+                navController = navController
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToEditContact(uiState.value.id) },
+                onClick = { navController.navigate("edit_screen/" + uiState.value.id) },
                 modifier = modifier.navigationBarsPadding()
             ) {
                 Icon(
@@ -63,7 +55,7 @@ fun DetailsScreen(
             onDelete = {
                 coroutineScope.launch {
                     viewModel.deleteContact()
-                    navigateBack()
+                    navController.popBackStack()
                 }
             },
             modifier = modifier

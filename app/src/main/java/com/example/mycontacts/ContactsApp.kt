@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.mycontacts.navigation.ContactsNavHost
@@ -23,16 +24,15 @@ fun ContactsApp(navController: NavHostController = rememberNavController()) {
 @Composable
 fun ContactsTopAppBar(
     title: String,
-    navigateBack: Boolean,
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit = {}
+    navController: NavController
 ) {
-    if (navigateBack) {
+    if (navController.popBackStack()) {
         TopAppBar(
             title = { Text(title) },
             modifier = modifier,
             navigationIcon = {
-                IconButton(onClick = navigateUp) {
+                IconButton(onClick = {}) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.back)
@@ -47,10 +47,4 @@ fun ContactsTopAppBar(
             modifier = modifier
         )
     }
-}
-
-@Preview
-@Composable
-fun PreviewUI() {
-  ContactsTopAppBar(title = "Sample Title", navigateBack = true)
 }

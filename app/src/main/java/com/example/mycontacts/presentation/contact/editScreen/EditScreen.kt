@@ -9,23 +9,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.contact.entryScreen.EntryBody
 import kotlinx.coroutines.launch
 
 
-object EditScreenDestination: NavigationDestination {
-    override val route = "contact_edit"
-    const val contactIdArg = "contactId"
-    val routeWithArgs =  "$route/{$contactIdArg}"
-}
-
 @Composable
 fun EditScreen(
-    navigateBack: () -> Unit,
-    onNavigateUp: () -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: EditScreenViewModel = hiltViewModel()
 ){
@@ -35,8 +28,7 @@ fun EditScreen(
         topBar = {
             ContactsTopAppBar(
                 title = stringResource(R.string.edit_contact),
-                navigateBack = true,
-                navigateUp = onNavigateUp
+                navController = navController
             )
         }
     ) { innerPadding ->
@@ -46,7 +38,7 @@ fun EditScreen(
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.updateContact()
-                    navigateBack()
+                    navController.popBackStack()
                 }
             },
             modifier = modifier

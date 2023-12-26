@@ -15,13 +15,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.mycontacts.R
 import com.example.mycontacts.domain.model.Contact
 
 @Composable
 fun HomeBody(
     contactList: List<Contact>,
-    onContactClick: (Int) -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     if (contactList.isEmpty()) {
@@ -44,16 +45,8 @@ fun HomeBody(
     } else {
         ContactList(
             contactList = contactList,
-            onContactClick = { onContactClick(it.id) },
+            onContactClick = { navController.navigate("details_screen" + contactList.first()) },
         )
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomeBodyPreview() {
-    HomeBody(
-        contactList = listOf(),
-        onContactClick = {},
-    )
-}

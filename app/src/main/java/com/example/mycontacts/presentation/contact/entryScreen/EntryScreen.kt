@@ -9,20 +9,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
-object EntryScreenDestination: NavigationDestination {
-    override val route = "contact_entry"
-}
 
 @Composable
 fun EntryScreen(
     modifier: Modifier = Modifier,
-    onNavigateUp: () -> Unit,
-    navigateBack: () -> Unit,
+    navController: NavController,
     viewModel: EntryScreenViewModel = hiltViewModel()
 ){
     val coroutineScope = rememberCoroutineScope()
@@ -30,8 +26,7 @@ fun EntryScreen(
         topBar = {
             ContactsTopAppBar(
                 title = stringResource(R.string.add_contact),
-                navigateBack = true,
-                navigateUp = onNavigateUp
+                navController = navController
             )
         }
     ) { innerPadding ->
@@ -41,7 +36,7 @@ fun EntryScreen(
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.saveContact()
-                    navigateBack()
+                    navController.popBackStack()
                 }
             },
             modifier = modifier
