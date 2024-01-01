@@ -40,7 +40,7 @@ fun MyContactsTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
     }
 
     MaterialTheme(
-        colorScheme = colors,
+        colorScheme = DarkColorPalette,
         typography = Typography,
         shapes = Shapes,
         content = content
