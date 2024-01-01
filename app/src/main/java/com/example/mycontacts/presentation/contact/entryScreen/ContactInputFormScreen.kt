@@ -3,13 +3,13 @@ package com.example.mycontacts.presentation.contact.entryScreen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ExposedDropdownMenuBox
-import androidx.compose.material.ExposedDropdownMenuDefaults
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactUiState
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactInputForm(
     contactUiState: ContactUiState,
@@ -45,8 +45,8 @@ fun ContactInputForm(
             enabled = enabled,
             textStyle = TextStyle(color = Color.Black),
             singleLine = true,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.White,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.White,
                 focusedIndicatorColor = Color.Transparent,
             )
         )
@@ -59,8 +59,8 @@ fun ContactInputForm(
             enabled = enabled,
             textStyle = TextStyle(color = Color.Black),
             singleLine = true,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.White,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.White,
                 focusedIndicatorColor = Color.Transparent,
             )
         )
@@ -73,8 +73,8 @@ fun ContactInputForm(
             enabled = enabled,
             textStyle = TextStyle(color = Color.Black),
             singleLine = true,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.White,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.White,
                 focusedIndicatorColor = Color.Transparent,
             )
         )
@@ -98,24 +98,24 @@ fun ContactInputForm(
                 enabled = enabled,
                 textStyle = TextStyle(color = Color.Black),
                 singleLine = true,
-                colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                 )
             )
-            if(enabled) {
+            if (enabled) {
                 ExposedDropdownMenu(
                     expanded = expanded,
-                    onDismissRequest = { expanded = false },
+                    onDismissRequest = { expanded = false }
                 ) {
                     genderList.forEach { item ->
                         DropdownMenuItem(
+                            text = { Text(text = item) },
                             onClick = {
                                 onValueChange(contactUiState.copy(gender = item))
                                 expanded = false
-                            }) {
-                            Text(text = item)
-                        }
+                            }
+                        )
                     }
                 }
             }
