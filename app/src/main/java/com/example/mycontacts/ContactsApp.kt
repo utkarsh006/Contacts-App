@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.mycontacts.navigation.ContactsNavHost
+import com.example.mycontacts.presentation.homeScreen.HomeScreen
 
 
 @Composable
@@ -53,7 +54,7 @@ fun ContactsTopAppBar(
             }
         }
     ){
-        _ ->
+
     }
 }
 

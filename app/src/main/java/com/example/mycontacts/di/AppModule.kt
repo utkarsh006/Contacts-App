@@ -17,7 +17,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app: Application): ContactsDatabase {
+    fun provideContactDatabase(app: Application): ContactsDatabase {
         return Room.databaseBuilder(
             app,
             ContactsDatabase::class.java,
@@ -27,7 +27,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteRepository(db: ContactsDatabase): ContactsRepository {
+    fun provideContactRepository(db: ContactsDatabase): ContactsRepository {
         return OfflineContactsRepository(db.contactDao())
     }
 
