@@ -18,15 +18,6 @@ private val LightColorPalette = lightColorScheme(
     secondary = Teal200,
     background = LightGrey,
     onPrimary = DarkGrey,
-
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
 )
 
 @Composable
