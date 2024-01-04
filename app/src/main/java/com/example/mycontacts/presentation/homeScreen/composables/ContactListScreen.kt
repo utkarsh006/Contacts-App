@@ -46,7 +46,7 @@ fun ContactList(
     val isSearching by viewModel.isSearching.collectAsState()
 
     Column(modifier = Modifier.fillMaxSize()) {
-        SearchTextField(modifier, searchText)
+        SearchComponent(modifier, searchText)
 
         Spacer(modifier = Modifier.height(15.dp))
 
@@ -71,7 +71,7 @@ fun ContactList(
 }
 
 @Composable
-fun SearchTextField(
+fun SearchComponent(
     modifier: Modifier,
     searchText: String,
     viewModel: HomeViewModel = hiltViewModel()
