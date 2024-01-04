@@ -30,5 +30,4 @@ object AppModule {
     fun provideContactRepository(db: ContactsDatabase): ContactsRepository {
         return OfflineContactsRepository(db.contactDao())
     }
-
 }

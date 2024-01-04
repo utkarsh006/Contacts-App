@@ -68,7 +68,6 @@ fun ContactList(
             }
         }
     }
-
 }
 
 @Composable
@@ -109,17 +108,19 @@ fun SearchTextField(
         },
 
         trailingIcon = {
-            if (searchText.isNotEmpty())
+            if (searchText.isNotEmpty()) {
                 IconButton(onClick = { viewModel.onSearchTextChange("") }) {
                     Icon(
-                        imageVector = Icons.Outlined.Close, contentDescription = "", tint = Red
+                        imageVector = Icons.Outlined.Close,
+                        contentDescription = "",
+                        tint = Red
                     )
                 }
+            }
         },
         shape = RoundedCornerShape(10.dp)
     )
 }
-
 
 @Preview
 @Composable

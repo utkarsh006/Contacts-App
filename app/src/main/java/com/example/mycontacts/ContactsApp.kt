@@ -15,7 +15,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.mycontacts.navigation.ContactsNavHost
 
-
 @Composable
 fun ContactsApp(navController: NavHostController = rememberNavController()) {
     ContactsNavHost(navController = navController)
@@ -54,5 +53,5 @@ fun ContactsTopAppBar(
 @Preview
 @Composable
 fun PreviewUI() {
-  ContactsTopAppBar(title = "Sample Title", navigateBack = true)
+    ContactsTopAppBar(title = "Sample Title", navigateBack = true)
 }

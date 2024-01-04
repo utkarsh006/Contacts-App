@@ -15,11 +15,10 @@ import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.contact.entryScreen.EntryBody
 import kotlinx.coroutines.launch
 
-
-object EditScreenDestination: NavigationDestination {
+object EditScreenDestination : NavigationDestination {
     override val route = "contact_edit"
     const val contactIdArg = "contactId"
-    val routeWithArgs =  "$route/{$contactIdArg}"
+    val routeWithArgs = "$route/{$contactIdArg}"
 }
 
 @Composable
@@ -28,7 +27,7 @@ fun EditScreen(
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: EditScreenViewModel = hiltViewModel()
-){
+) {
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(

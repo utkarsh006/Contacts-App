@@ -14,7 +14,7 @@ import com.example.mycontacts.R
 import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
-object EntryScreenDestination: NavigationDestination {
+object EntryScreenDestination : NavigationDestination {
     override val route = "contact_entry"
 }
 
@@ -24,7 +24,7 @@ fun EntryScreen(
     onNavigateUp: () -> Unit,
     navigateBack: () -> Unit,
     viewModel: EntryScreenViewModel = hiltViewModel()
-){
+) {
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {

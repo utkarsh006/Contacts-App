@@ -20,7 +20,6 @@ import com.example.mycontacts.R
 import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
-
 object DetailsScreenDestination : NavigationDestination {
     override val route = "contact_details"
     const val contactIdArg = "contactId"

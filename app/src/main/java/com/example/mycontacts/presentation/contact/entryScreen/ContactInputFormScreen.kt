@@ -94,7 +94,9 @@ fun ContactInputForm(
                 readOnly = true,
                 label = { Text(stringResource(R.string.gender)) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                modifier = modifier.fillMaxWidth().menuAnchor(),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .menuAnchor(),
                 enabled = enabled,
                 textStyle = TextStyle(color = Color.Black),
                 singleLine = true,
@@ -119,7 +121,6 @@ fun ContactInputForm(
                     }
                 }
             }
-
         }
     }
 }
