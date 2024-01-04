@@ -32,7 +32,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mycontacts.domain.model.Contact
 import com.example.mycontacts.presentation.homeScreen.HomeViewModel
 
@@ -47,45 +46,8 @@ fun ContactList(
     val isSearching by viewModel.isSearching.collectAsState()
 
     Column(modifier = Modifier.fillMaxSize()) {
-        TextField(
-            value = searchText,
-            onValueChange = viewModel::onSearchTextChange,
-            modifier = modifier.fillMaxWidth(),
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
+        SearchTextField(modifier, searchText)
 
-            placeholder = {
-                Text(
-                    text = "Search a Contact",
-                    style = TextStyle(
-                        color = Color.DarkGray,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal
-                    )
-                )
-            },
-
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Outlined.Search,
-                    contentDescription = "",
-                    tint = Red
-                )
-            },
-
-            trailingIcon = {
-                if (searchText.isNotEmpty())
-                    IconButton(onClick = { viewModel.onSearchTextChange("") }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Close, contentDescription = "", tint = Red
-                        )
-                    }
-            },
-            shape = RoundedCornerShape(10.dp)
-        )
         Spacer(modifier = Modifier.height(15.dp))
 
         val filteredList = viewModel.searchUser(contactList)
@@ -107,6 +69,55 @@ fun ContactList(
         }
     }
 
+}
+
+@Composable
+fun SearchTextField(
+    modifier: Modifier,
+    searchText: String,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+    TextField(
+        value = searchText,
+        onValueChange = {
+            viewModel.onSearchTextChange(searchText)
+        },
+        modifier = modifier.fillMaxWidth(),
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.White,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
+        ),
+
+        placeholder = {
+            Text(
+                text = "Search a Contact",
+                style = TextStyle(
+                    color = Color.DarkGray,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Normal
+                )
+            )
+        },
+
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Search,
+                contentDescription = "",
+                tint = Red
+            )
+        },
+
+        trailingIcon = {
+            if (searchText.isNotEmpty())
+                IconButton(onClick = { viewModel.onSearchTextChange("") }) {
+                    Icon(
+                        imageVector = Icons.Outlined.Close, contentDescription = "", tint = Red
+                    )
+                }
+        },
+        shape = RoundedCornerShape(10.dp)
+    )
 }
 
 
