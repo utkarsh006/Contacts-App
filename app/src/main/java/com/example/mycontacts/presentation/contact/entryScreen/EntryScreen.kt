@@ -2,8 +2,8 @@ package com.example.mycontacts.presentation.contact.entryScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -14,7 +14,7 @@ import com.example.mycontacts.R
 import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
-object EntryScreenDestination: NavigationDestination {
+object EntryScreenDestination : NavigationDestination {
     override val route = "contact_entry"
 }
 
@@ -24,7 +24,7 @@ fun EntryScreen(
     onNavigateUp: () -> Unit,
     navigateBack: () -> Unit,
     viewModel: EntryScreenViewModel = hiltViewModel()
-){
+) {
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
@@ -46,7 +46,7 @@ fun EntryScreen(
             },
             modifier = modifier
                 .padding(innerPadding)
-                .background(MaterialTheme.colors.background)
+                .background(MaterialTheme.colorScheme.background)
         )
     }
 }

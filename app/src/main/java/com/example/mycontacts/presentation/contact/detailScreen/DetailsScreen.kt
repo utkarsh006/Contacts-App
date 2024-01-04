@@ -3,12 +3,12 @@ package com.example.mycontacts.presentation.contact.detailScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
@@ -19,7 +19,6 @@ import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
 import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
-
 
 object DetailsScreenDestination : NavigationDestination {
     override val route = "contact_details"
@@ -53,7 +52,7 @@ fun DetailsScreen(
                 Icon(
                     imageVector = Icons.Default.Edit,
                     contentDescription = "Edit Contact",
-                    tint = MaterialTheme.colors.onPrimary
+                    tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
         },
@@ -68,7 +67,7 @@ fun DetailsScreen(
             },
             modifier = modifier
                 .padding(innerPadding)
-                .background(MaterialTheme.colors.background)
+                .background(MaterialTheme.colorScheme.background)
         )
     }
 }

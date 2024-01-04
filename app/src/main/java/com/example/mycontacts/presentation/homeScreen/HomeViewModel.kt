@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
     private val _isSearching = MutableStateFlow(false)
     val isSearching = _isSearching.asStateFlow()
 
-    //This fn will be called from UI if user types something
+    // This fn will be called from UI if user types something
     fun onSearchTextChange(text: String) {
         _searchText.value = text
     }
