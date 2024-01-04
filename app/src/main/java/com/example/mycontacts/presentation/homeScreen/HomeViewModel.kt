@@ -32,6 +32,13 @@ class HomeViewModel @Inject constructor(
         _searchText.value = text
     }
 
+    fun onToggleSearch() {
+        _isSearching.value = !_isSearching.value
+        if (!_isSearching.value) {
+            onSearchTextChange("")
+        }
+    }
+
     fun searchUser(contactList: List<Contact>): List<Contact> {
         val list = if (searchText.value.isEmpty()) {
             contactList
