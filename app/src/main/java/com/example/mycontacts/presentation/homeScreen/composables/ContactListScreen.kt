@@ -40,16 +40,14 @@ import com.example.mycontacts.presentation.homeScreen.HomeViewModel
 fun ContactList(
     contactList: List<Contact>,
     onContactClick: (Contact) -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val searchText by viewModel.searchText.collectAsState()
     val isSearching by viewModel.isSearching.collectAsState()
 
     Column(modifier = Modifier.fillMaxSize()) {
-        
         Spacer(modifier = Modifier.height(40.dp))
-        SearchComponent(modifier, searchText, isSearching)
+        SearchComponent(searchText, isSearching)
 
         Spacer(modifier = Modifier.height(15.dp))
 
@@ -76,18 +74,16 @@ fun ContactList(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchComponent(
-    modifier: Modifier,
     searchText: String,
     isSearching: Boolean,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-
     SearchBar(
-        query = searchText, //text showed on SearchBar
-        onQueryChange = viewModel::onSearchTextChange, //update the value of searchText
-        onSearch = viewModel::onSearchTextChange, //the callback to be invoked when the input service triggers the ImeAction.Search action
-        active = isSearching, //whether the user is searching or not
-        onActiveChange = { viewModel.onToggleSearch() }, //the callback to be invoked when this search bar's active state is changed
+        query = searchText, // text showed on SearchBar
+        onQueryChange = viewModel::onSearchTextChange, // update the value of searchText
+        onSearch = viewModel::onSearchTextChange, // the callback to be invoked when the input service triggers the ImeAction.Search action
+        active = isSearching, // whether the user is searching or not
+        onActiveChange = {}, // the callback to be invoked when this search bar's active state is changed
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
@@ -123,7 +119,6 @@ fun SearchComponent(
         },
         shape = RoundedCornerShape(10.dp)
     ) {
-
     }
 }
 
