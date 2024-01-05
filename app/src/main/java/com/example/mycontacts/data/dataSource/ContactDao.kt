@@ -16,8 +16,11 @@ interface ContactDao {
     suspend fun delete(contact: Contact)
 
     @Query("SELECT * from contacts WHERE id = :id")
-    fun getContact(id: Int): Flow<Contact>
+    fun getContactById(id: Int): Contact?
 
     @Query("SELECT * from contacts ORDER BY firstName ASC")
     fun getAllContacts(): Flow<List<Contact>>
+
+    @Query("SELECT * FROM contacts WHERE firstName = :firstName AND lastName = :lastName LIMIT 1")
+    fun getContactByName(firstName: String, lastName: String): Contact?
 }
