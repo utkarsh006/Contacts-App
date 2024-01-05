@@ -36,7 +36,7 @@ fun EntryScreen(
         }
     ) { innerPadding ->
         EntryBody(
-            contactUiState = viewModel.contactUiState,
+            state = viewModel.contactUiState,
             onContactValueChange = viewModel::updateUiState,
             onSaveClick = {
                 coroutineScope.launch {

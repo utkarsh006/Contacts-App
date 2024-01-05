@@ -22,14 +22,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
-import com.example.mycontacts.presentation.contact.ContactUiState
+import com.example.mycontacts.presentation.contact.ContactState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactInputForm(
-    contactUiState: ContactUiState,
+    state: ContactState,
     modifier: Modifier = Modifier,
-    onValueChange: (ContactUiState) -> Unit = {},
+    onValueChange: (ContactState) -> Unit = {},
     enabled: Boolean = true
 ) {
     Column(
@@ -38,8 +38,8 @@ fun ContactInputForm(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         TextField(
-            value = contactUiState.firstName,
-            onValueChange = { onValueChange(contactUiState.copy(firstName = it)) },
+            value = state.firstName,
+            onValueChange = { onValueChange(state.copy(firstName = it)) },
             label = { Text(stringResource(R.string.contact_name_input_first_name)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -52,8 +52,8 @@ fun ContactInputForm(
         )
 
         TextField(
-            value = contactUiState.lastName,
-            onValueChange = { onValueChange(contactUiState.copy(lastName = it)) },
+            value = state.lastName,
+            onValueChange = { onValueChange(state.copy(lastName = it)) },
             label = { Text(stringResource(R.string.contact_name_input_last_name)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -66,8 +66,8 @@ fun ContactInputForm(
         )
 
         TextField(
-            value = contactUiState.address,
-            onValueChange = { onValueChange(contactUiState.copy(address = it)) },
+            value = state.address,
+            onValueChange = { onValueChange(state.copy(address = it)) },
             label = { Text(stringResource(R.string.address)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -89,7 +89,7 @@ fun ContactInputForm(
             }
         ) {
             TextField(
-                value = contactUiState.gender,
+                value = state.gender,
                 onValueChange = {},
                 readOnly = true,
                 label = { Text(stringResource(R.string.gender)) },
@@ -114,7 +114,7 @@ fun ContactInputForm(
                         DropdownMenuItem(
                             text = { Text(text = item) },
                             onClick = {
-                                onValueChange(contactUiState.copy(gender = item))
+                                onValueChange(state.copy(gender = item))
                                 expanded = false
                             }
                         )
@@ -128,5 +128,5 @@ fun ContactInputForm(
 @Preview(showBackground = true)
 @Composable
 fun ContactInputPreview() {
-    ContactInputForm(contactUiState = ContactUiState())
+    ContactInputForm(state = ContactState())
 }
