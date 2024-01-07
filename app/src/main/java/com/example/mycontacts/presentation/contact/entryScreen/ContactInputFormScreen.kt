@@ -32,14 +32,18 @@ fun ContactInputForm(
     onValueChange: (ContactState) -> Unit = {},
     enabled: Boolean = true
 ) {
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    var address by remember { mutableStateOf("") }
+
     Column(
         modifier = modifier
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         TextField(
-            value = state.firstName,
-            onValueChange = { onValueChange(state.copy(firstName = it)) },
+            value = firstName,
+            onValueChange = { firstName = it },
             label = { Text(stringResource(R.string.contact_name_input_first_name)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -52,8 +56,8 @@ fun ContactInputForm(
         )
 
         TextField(
-            value = state.lastName,
-            onValueChange = { onValueChange(state.copy(lastName = it)) },
+            value = lastName,
+            onValueChange = { lastName = it },
             label = { Text(stringResource(R.string.contact_name_input_last_name)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -66,8 +70,8 @@ fun ContactInputForm(
         )
 
         TextField(
-            value = state.address,
-            onValueChange = { onValueChange(state.copy(address = it)) },
+            value = address,
+            onValueChange = { address = it },
             label = { Text(stringResource(R.string.address)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
