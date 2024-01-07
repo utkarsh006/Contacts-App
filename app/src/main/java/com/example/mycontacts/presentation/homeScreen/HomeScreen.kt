@@ -31,7 +31,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val homeUiState by viewModel.homeUiState.collectAsState()
+    val state = viewModel.state.value
 
     Scaffold(
         topBar = {
@@ -54,7 +54,7 @@ fun HomeScreen(
         },
     ) { innerPadding ->
         HomeBody(
-            contactList = homeUiState.contactList,
+            contactList = state.contactList,
             onContactClick = navigateToUpdateScreen,
             modifier = modifier
                 .padding(innerPadding)

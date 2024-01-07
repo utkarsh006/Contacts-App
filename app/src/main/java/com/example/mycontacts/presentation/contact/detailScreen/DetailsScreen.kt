@@ -33,7 +33,7 @@ fun DetailsScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
-    val uiState = viewModel.uiState.collectAsState()
+    val state = viewModel.state.value
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
@@ -46,7 +46,7 @@ fun DetailsScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToEditContact(uiState.value.id) },
+                onClick = { navigateToEditContact(state.id) },
                 modifier = modifier.navigationBarsPadding()
             ) {
                 Icon(
@@ -58,7 +58,7 @@ fun DetailsScreen(
         },
     ) { innerPadding ->
         DetailsBody(
-            contactUiState = uiState.value,
+            state = state,
             onDelete = {
                 coroutineScope.launch {
                     viewModel.deleteContact()

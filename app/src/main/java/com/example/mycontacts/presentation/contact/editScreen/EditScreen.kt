@@ -28,6 +28,7 @@ fun EditScreen(
     modifier: Modifier = Modifier,
     viewModel: EditScreenViewModel = hiltViewModel()
 ) {
+    val state = viewModel.state.value
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
@@ -40,8 +41,8 @@ fun EditScreen(
         }
     ) { innerPadding ->
         EntryBody(
-            contactUiState = viewModel.contactUiState,
-            onContactValueChange = viewModel::updateUiState,
+            state = state,
+            onContactValueChange = {},
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.updateContact()

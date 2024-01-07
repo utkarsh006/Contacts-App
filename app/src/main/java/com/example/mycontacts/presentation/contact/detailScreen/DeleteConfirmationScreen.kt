@@ -20,12 +20,12 @@ fun DeleteConfirmationDialog(
     modifier: Modifier = Modifier,
     viewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val state = viewModel.state.value
 
     AlertDialog(
         onDismissRequest = {},
         title = { Text(stringResource(R.string.delete_this_contact)) },
-        text = { Text("${uiState.firstName} ${uiState.lastName} will be removed from your Contacts") },
+        text = { Text("${state.firstName} ${state.lastName} will be removed from your Contacts") },
         modifier = modifier.padding(16.dp),
         dismissButton = {
             TextButton(onClick = onDeleteCancel) {
