@@ -25,15 +25,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
-import com.example.mycontacts.presentation.contact.ContactUiState
+import com.example.mycontacts.presentation.contact.ContactState
 import com.example.mycontacts.presentation.contact.entryScreen.ContactInputForm
 
 @Composable
 fun DetailsBody(
-    contactUiState: ContactUiState,
+    state: ContactState,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -62,7 +61,7 @@ fun DetailsBody(
         }
 
         ContactInputForm(
-            contactUiState = contactUiState,
+            state = state,
             enabled = false,
         )
 
@@ -85,8 +84,8 @@ fun DetailsBody(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DetailsBodyPreview() {
-    DetailsBody(contactUiState = ContactUiState(), onDelete = {})
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun DetailsBodyPreview() {
+//    DetailsBody(contactUiState = ContactUiState(), onDelete = {})
+//}

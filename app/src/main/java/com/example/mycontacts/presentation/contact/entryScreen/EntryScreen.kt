@@ -25,6 +25,7 @@ fun EntryScreen(
     navigateBack: () -> Unit,
     viewModel: EntryScreenViewModel = hiltViewModel()
 ) {
+    val state = viewModel.state.value
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
@@ -36,8 +37,8 @@ fun EntryScreen(
         }
     ) { innerPadding ->
         EntryBody(
-            state = viewModel.contactUiState,
-            onContactValueChange = viewModel::updateUiState,
+            state = state,
+            onContactValueChange = {},
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.saveContact()
