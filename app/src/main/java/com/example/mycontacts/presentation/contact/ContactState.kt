@@ -9,6 +9,4 @@ data class ContactState(
     val address: String = "",
     val gender: String = "",
     val contactList: List<Contact> = listOf(),
-    val actionEnable: Boolean = false
-
 )

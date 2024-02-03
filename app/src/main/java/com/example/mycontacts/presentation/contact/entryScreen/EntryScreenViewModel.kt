@@ -20,7 +20,33 @@ class EntryScreenViewModel @Inject constructor(
     private val _state = mutableStateOf(ContactState())
     val state: State<ContactState> = _state
 
-    fun saveContact() {
+    fun onEvent(event: EntryUIEvent){
+        when(event){
+            is EntryUIEvent.FirstNameChanged -> {
+               _state.value = state.value.copy(firstName = event.firstName)
+            }
+
+            is EntryUIEvent.LastNameChanged -> {
+                _state.value = state.value.copy(firstName = event.lastName)
+            }
+
+            is EntryUIEvent.AddressChanged -> {
+                _state.value = state.value.copy(firstName = event.address)
+            }
+
+            is EntryUIEvent.GenderChanged -> {
+                _state.value = state.value.copy(firstName = event.gender)
+            }
+
+            is EntryUIEvent.SaveButtonClicked -> {
+                saveContact()
+            }
+        }
+
+    }
+
+
+    private fun saveContact() {
         viewModelScope.launch {
             try {
                 contactUseCases.addContact(

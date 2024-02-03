@@ -21,15 +21,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactState
+import org.w3c.dom.Text
 
 @Composable
 fun EntryBody(
     state: ContactState,
-    onContactValueChange: (ContactState) -> Unit,
-    onSaveClick: () -> Unit,
-    modifier: Modifier = Modifier
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: EntryScreenViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
@@ -54,14 +57,15 @@ fun EntryBody(
         }
 
         ContactInputForm(
-            state = ContactState(),
-            onValueChange = onContactValueChange
+            state = state,
         )
 
         Button(
-            onClick = onSaveClick,
-            enabled = state.actionEnable,
-            modifier = modifier.fillMaxWidth()
+            onClick = {
+                navController.navigate()
+                navController.navigate(viewModel.onEvent(EntryUIEvent.SaveButtonClicked))
+            },
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = stringResource(R.string.save_contact))
         }
@@ -71,5 +75,5 @@ fun EntryBody(
 @Preview(showBackground = true)
 @Composable
 fun EntryBodyPreview() {
-    EntryBody(state = ContactState(), onContactValueChange = {}, onSaveClick = {})
+    EntryBody(state = ContactState())
 }

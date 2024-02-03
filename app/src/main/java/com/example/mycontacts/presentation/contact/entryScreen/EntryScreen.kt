@@ -38,13 +38,6 @@ fun EntryScreen(
     ) { innerPadding ->
         EntryBody(
             state = state,
-            onContactValueChange = {},
-            onSaveClick = {
-                coroutineScope.launch {
-                    viewModel.saveContact()
-                    navigateBack()
-                }
-            },
             modifier = modifier
                 .padding(innerPadding)
                 .background(MaterialTheme.colorScheme.background)

@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactState
 
@@ -29,12 +30,13 @@ import com.example.mycontacts.presentation.contact.ContactState
 fun ContactInputForm(
     state: ContactState,
     modifier: Modifier = Modifier,
-    onValueChange: (ContactState) -> Unit = {},
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    viewModel: EntryScreenViewModel = hiltViewModel()
 ) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var address by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -93,8 +95,8 @@ fun ContactInputForm(
             }
         ) {
             TextField(
-                value = state.gender,
-                onValueChange = {},
+                value = gender,
+                onValueChange = { gender = it },
                 readOnly = true,
                 label = { Text(stringResource(R.string.gender)) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -109,6 +111,7 @@ fun ContactInputForm(
                     focusedIndicatorColor = Color.Transparent,
                 )
             )
+
             if (enabled) {
                 ExposedDropdownMenu(
                     expanded = expanded,
@@ -118,7 +121,7 @@ fun ContactInputForm(
                         DropdownMenuItem(
                             text = { Text(text = item) },
                             onClick = {
-                                onValueChange(state.copy(gender = item))
+                                gender = item
                                 expanded = false
                             }
                         )
