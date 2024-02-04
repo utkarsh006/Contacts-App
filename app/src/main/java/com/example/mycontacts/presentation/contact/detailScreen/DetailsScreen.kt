@@ -10,21 +10,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import kotlinx.coroutines.launch
-
-object DetailsScreenDestination : NavigationDestination {
-    override val route = "contact_details"
-    const val contactIdArg = "contactId"
-    val routeWithArgs = "$route/{$contactIdArg}"
-}
 
 @Composable
 fun DetailsScreen(

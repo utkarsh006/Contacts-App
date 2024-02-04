@@ -10,19 +10,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.homeScreen.composables.HomeBody
 
-object HomeScreenDestination : NavigationDestination {
-    override val route = "home"
-}
 
 @Composable
 fun HomeScreen(

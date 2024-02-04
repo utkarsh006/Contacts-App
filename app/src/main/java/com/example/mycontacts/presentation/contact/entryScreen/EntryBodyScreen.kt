@@ -19,13 +19,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactState
-import org.w3c.dom.Text
 
 @Composable
 fun EntryBody(
@@ -62,7 +60,6 @@ fun EntryBody(
 
         Button(
             onClick = {
-                navController.navigate()
                 navController.navigate(viewModel.onEvent(EntryUIEvent.SaveButtonClicked))
             },
             modifier = Modifier.fillMaxWidth()
@@ -70,10 +67,4 @@ fun EntryBody(
             Text(text = stringResource(R.string.save_contact))
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun EntryBodyPreview() {
-    EntryBody(state = ContactState())
 }
