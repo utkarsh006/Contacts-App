@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.entryScreen
+package com.example.mycontacts.presentation.contact.entry_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

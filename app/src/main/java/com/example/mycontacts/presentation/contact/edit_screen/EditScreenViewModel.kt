@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.editScreen
+package com.example.mycontacts.presentation.contact.edit_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

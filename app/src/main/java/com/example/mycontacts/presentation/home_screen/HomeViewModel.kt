@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.homeScreen
+package com.example.mycontacts.presentation.home_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

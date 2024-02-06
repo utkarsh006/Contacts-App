@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.entryScreen
+package com.example.mycontacts.presentation.contact.entry_screen
 
 sealed class EntryUIEvent {
     data class FirstNameChanged(val firstName: String) : EntryUIEvent()

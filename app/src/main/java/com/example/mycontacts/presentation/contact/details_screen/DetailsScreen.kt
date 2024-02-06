@@ -1,55 +1,62 @@
-package com.example.mycontacts.presentation.homeScreen
+package com.example.mycontacts.presentation.contact.details_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.presentation.homeScreen.composables.HomeBody
-
+import kotlinx.coroutines.launch
 
 @Composable
-fun HomeScreen(
-    navigateToEntryScreen: () -> Unit,
-    navigateToUpdateScreen: (Int) -> Unit,
+fun DetailsScreen(
+    navigateToEditContact: (Int) -> Unit,
+    navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(R.string.my_contacts),
-                navigateBack = false
+                title = stringResource(R.string.contact_details),
+                navigateBack = true,
+                navigateUp = navigateBack
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToEntryScreen,
+                onClick = { navigateToEditContact(state.id) },
                 modifier = modifier.navigationBarsPadding()
             ) {
                 Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "Entry Contact",
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = "Edit Contact",
                     tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
         },
     ) { innerPadding ->
-        HomeBody(
-            contactList = state.contactList,
-            onContactClick = navigateToUpdateScreen,
+        DetailsBody(
+            state = state,
+            onDelete = {
+                coroutineScope.launch {
+                    viewModel.deleteContact()
+                    navigateBack()
+                }
+            },
             modifier = modifier
                 .padding(innerPadding)
                 .background(MaterialTheme.colorScheme.background)

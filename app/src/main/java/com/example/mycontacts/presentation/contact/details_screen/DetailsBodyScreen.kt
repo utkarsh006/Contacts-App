@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.detailScreen
+package com.example.mycontacts.presentation.contact.details_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactState
-import com.example.mycontacts.presentation.contact.entryScreen.ContactInputForm
+import com.example.mycontacts.presentation.contact.entry_screen.ContactInputForm
 
 @Composable
 fun DetailsBody(

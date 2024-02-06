@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.entryScreen
+package com.example.mycontacts.presentation.contact.edit_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
@@ -11,20 +11,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
+import com.example.mycontacts.presentation.contact.entry_screen.EntryBody
 
 @Composable
-fun EntryScreen(
-    modifier: Modifier = Modifier,
-    onNavigateUp: () -> Unit,
+fun EditScreen(
     navigateBack: () -> Unit,
-    viewModel: EntryScreenViewModel = hiltViewModel()
+    onNavigateUp: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: EditScreenViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
     val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(R.string.add_contact),
+                title = stringResource(R.string.edit_contact),
                 navigateBack = true,
                 navigateUp = onNavigateUp
             )
