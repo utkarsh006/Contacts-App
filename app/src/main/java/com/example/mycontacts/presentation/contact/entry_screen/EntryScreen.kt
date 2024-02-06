@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
+import com.example.mycontacts.presentation.contact.entry_screen.components.EntryBody
 
 @Composable
 fun EntryScreen(

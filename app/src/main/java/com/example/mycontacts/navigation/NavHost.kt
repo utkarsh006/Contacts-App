@@ -23,12 +23,7 @@ fun ContactsNavHost(
         modifier = modifier
     ) {
         composable(route = NavScreen.HomeScreen.route) {
-            HomeScreen(
-                navigateToEntryScreen = { navController.navigate(NavScreen.EntryScreen.route) },
-                navigateToUpdateScreen = {
-                    navController.navigate("${NavScreen.DetailsScreen.route}/$it")
-                }
-            )
+            HomeScreen(navController = navController)
         }
 
         composable(route = NavScreen.EntryScreen.route) {

@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.home_screen.composables
+package com.example.mycontacts.presentation.home_screen.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

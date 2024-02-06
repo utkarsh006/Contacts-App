@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.entry_screen
+package com.example.mycontacts.presentation.contact.entry_screen.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactState
+import com.example.mycontacts.presentation.contact.entry_screen.EntryScreenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

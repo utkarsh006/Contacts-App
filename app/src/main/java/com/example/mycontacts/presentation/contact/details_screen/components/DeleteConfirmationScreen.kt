@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.details_screen
+package com.example.mycontacts.presentation.contact.details_screen.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
@@ -10,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.R
+import com.example.mycontacts.presentation.contact.details_screen.DetailsScreenViewModel
 
 @Composable
 fun DeleteConfirmationDialog(

@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.details_screen
+package com.example.mycontacts.presentation.contact.entry_screen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -8,17 +8,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,23 +20,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactState
-import com.example.mycontacts.presentation.contact.entry_screen.ContactInputForm
+import com.example.mycontacts.presentation.contact.entry_screen.EntryScreenViewModel
+import com.example.mycontacts.presentation.contact.entry_screen.EntryUIEvent
 
 @Composable
-fun DetailsBody(
+fun EntryBody(
     state: ContactState,
-    onDelete: () -> Unit,
-    modifier: Modifier = Modifier
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: EntryScreenViewModel = hiltViewModel()
 ) {
-    var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
-
     Column(
         modifier = modifier
-            .padding(16.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .fillMaxWidth()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(32.dp)
     ) {
         Box(modifier = modifier.align(alignment = Alignment.CenterHorizontally)) {
             Image(
@@ -62,30 +58,15 @@ fun DetailsBody(
 
         ContactInputForm(
             state = state,
-            enabled = false,
         )
 
-        OutlinedButton(
-            onClick = { deleteConfirmationRequired = true },
-            modifier = modifier.fillMaxWidth()
+        Button(
+            onClick = {
+                navController.navigate(viewModel.onEvent(EntryUIEvent.SaveButtonClicked))
+            },
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = stringResource(R.string.delete_button))
-        }
-
-        if (deleteConfirmationRequired) {
-            DeleteConfirmationDialog(
-                onDeleteConfirm = {
-                    deleteConfirmationRequired = false
-                    onDelete()
-                },
-                onDeleteCancel = { deleteConfirmationRequired = false }
-            )
+            Text(text = stringResource(R.string.save_contact))
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun DetailsBodyPreview() {
-//    DetailsBody(contactUiState = ContactUiState(), onDelete = {})
-//}
