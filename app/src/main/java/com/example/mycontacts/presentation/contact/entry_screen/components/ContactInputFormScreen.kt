@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.entryScreen
+package com.example.mycontacts.presentation.contact.entry_screen.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,25 +21,32 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.R
-import com.example.mycontacts.presentation.contact.ContactUiState
+import com.example.mycontacts.presentation.contact.ContactState
+import com.example.mycontacts.presentation.contact.entry_screen.EntryScreenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactInputForm(
-    contactUiState: ContactUiState,
+    state: ContactState,
     modifier: Modifier = Modifier,
-    onValueChange: (ContactUiState) -> Unit = {},
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    viewModel: EntryScreenViewModel = hiltViewModel()
 ) {
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    var address by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
+
     Column(
         modifier = modifier
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         TextField(
-            value = contactUiState.firstName,
-            onValueChange = { onValueChange(contactUiState.copy(firstName = it)) },
+            value = firstName,
+            onValueChange = { firstName = it },
             label = { Text(stringResource(R.string.contact_name_input_first_name)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -52,8 +59,8 @@ fun ContactInputForm(
         )
 
         TextField(
-            value = contactUiState.lastName,
-            onValueChange = { onValueChange(contactUiState.copy(lastName = it)) },
+            value = lastName,
+            onValueChange = { lastName = it },
             label = { Text(stringResource(R.string.contact_name_input_last_name)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -66,8 +73,8 @@ fun ContactInputForm(
         )
 
         TextField(
-            value = contactUiState.address,
-            onValueChange = { onValueChange(contactUiState.copy(address = it)) },
+            value = address,
+            onValueChange = { address = it },
             label = { Text(stringResource(R.string.address)) },
             modifier = modifier.fillMaxWidth(),
             enabled = enabled,
@@ -89,8 +96,8 @@ fun ContactInputForm(
             }
         ) {
             TextField(
-                value = contactUiState.gender,
-                onValueChange = {},
+                value = gender,
+                onValueChange = { gender = it },
                 readOnly = true,
                 label = { Text(stringResource(R.string.gender)) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -105,6 +112,7 @@ fun ContactInputForm(
                     focusedIndicatorColor = Color.Transparent,
                 )
             )
+
             if (enabled) {
                 ExposedDropdownMenu(
                     expanded = expanded,
@@ -114,7 +122,7 @@ fun ContactInputForm(
                         DropdownMenuItem(
                             text = { Text(text = item) },
                             onClick = {
-                                onValueChange(contactUiState.copy(gender = item))
+                                gender = item
                                 expanded = false
                             }
                         )
@@ -128,5 +136,5 @@ fun ContactInputForm(
 @Preview(showBackground = true)
 @Composable
 fun ContactInputPreview() {
-    ContactInputForm(contactUiState = ContactUiState())
+    ContactInputForm(state = ContactState())
 }

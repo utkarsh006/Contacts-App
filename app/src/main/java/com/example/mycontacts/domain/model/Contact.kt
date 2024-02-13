@@ -24,3 +24,4 @@ data class Contact(
     }
 }
 
+class InvalidContactException(message: String) : Exception(message)

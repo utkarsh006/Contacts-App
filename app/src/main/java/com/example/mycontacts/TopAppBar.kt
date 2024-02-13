@@ -11,14 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.mycontacts.navigation.ContactsNavHost
 
-@Composable
-fun ContactsApp(navController: NavHostController = rememberNavController()) {
-    ContactsNavHost(navController = navController)
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

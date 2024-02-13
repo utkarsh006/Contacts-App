@@ -1,31 +1,48 @@
-package com.example.mycontacts.presentation.homeScreen
+package com.example.mycontacts.presentation.home_screen
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mycontacts.domain.model.Contact
-import com.example.mycontacts.domain.repository.ContactsRepository
+import com.example.mycontacts.domain.usecases.ContactUseCases
+import com.example.mycontacts.presentation.contact.ContactState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-data class HomeUiState(
-    val contactList: List<Contact> = listOf()
-)
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    contactsRepository: ContactsRepository,
+    private val contactUseCases: ContactUseCases
 ) : ViewModel() {
+
+    private val _state = mutableStateOf(ContactState())
+    val state: State<ContactState> = _state
+
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
 
     private val _isSearching = MutableStateFlow(false)
     val isSearching = _isSearching.asStateFlow()
+
+    init{
+        getAllContacts()
+    }
+
+    //Display all Contacts
+    private fun getAllContacts() {
+        viewModelScope.launch {
+            try {
+                val contacts = contactUseCases.getAllContacts.invoke().toList().flatten()
+                _state.value = _state.value.copy(contactList = contacts)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     // This fn will be called from UI if user types something
     fun onSearchTextChange(text: String) {
@@ -43,15 +60,4 @@ class HomeViewModel @Inject constructor(
         return list
     }
 
-    val homeUiState: StateFlow<HomeUiState> =
-        contactsRepository.getAllContactsStream().map { HomeUiState(it) }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
-                initialValue = HomeUiState()
-            )
-
-    companion object {
-        private const val TIMEOUT_MILLIS = 5_000L
-    }
 }

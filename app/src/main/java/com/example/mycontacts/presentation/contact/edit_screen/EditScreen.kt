@@ -1,4 +1,4 @@
-package com.example.mycontacts.presentation.contact.entryScreen
+package com.example.mycontacts.presentation.contact.edit_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
@@ -9,41 +9,33 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
-import kotlinx.coroutines.launch
-
-object EntryScreenDestination : NavigationDestination {
-    override val route = "contact_entry"
-}
+import com.example.mycontacts.presentation.contact.entry_screen.components.EntryBody
 
 @Composable
-fun EntryScreen(
-    modifier: Modifier = Modifier,
+fun EditScreen(
+    navController: NavController,
     onNavigateUp: () -> Unit,
-    navigateBack: () -> Unit,
-    viewModel: EntryScreenViewModel = hiltViewModel()
+    modifier: Modifier = Modifier,
+    viewModel: EditScreenViewModel = hiltViewModel()
 ) {
+    val state = viewModel.state.value
     val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
         topBar = {
             ContactsTopAppBar(
-                title = stringResource(R.string.add_contact),
+                title = stringResource(R.string.edit_contact),
                 navigateBack = true,
                 navigateUp = onNavigateUp
             )
         }
     ) { innerPadding ->
         EntryBody(
-            contactUiState = viewModel.contactUiState,
-            onContactValueChange = viewModel::updateUiState,
-            onSaveClick = {
-                coroutineScope.launch {
-                    viewModel.saveContact()
-                    navigateBack()
-                }
-            },
+            state = state,
+            navController = navController,
             modifier = modifier
                 .padding(innerPadding)
                 .background(MaterialTheme.colorScheme.background)
