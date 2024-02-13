@@ -62,7 +62,7 @@ fun EntryBody(
 
         Button(
             onClick = {
-                navController.navigate(viewModel.onEvent(EntryUIEvent.SaveButtonClicked))
+                navController.navigate(route = viewModel.onEvent(EntryUIEvent.SaveButtonClicked).toString())
             },
             modifier = Modifier.fillMaxWidth()
         ) {

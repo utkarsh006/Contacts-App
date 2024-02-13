@@ -28,8 +28,8 @@ fun ContactsNavHost(
 
         composable(route = NavScreen.EntryScreen.route) {
             EntryScreen(
+                navController = navController,
                 onNavigateUp = { navController.navigateUp() },
-                navigateBack = { navController.popBackStack() }
             )
         }
 
@@ -56,7 +56,7 @@ fun ContactsNavHost(
             )
         ) {
             EditScreen(
-                navigateBack = { navController.popBackStack() },
+                navController = navController,
                 onNavigateUp = { navController.navigateUp() }
             )
         }

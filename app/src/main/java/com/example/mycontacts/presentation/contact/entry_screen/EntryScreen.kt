@@ -9,6 +9,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.entry_screen.components.EntryBody
@@ -16,8 +17,8 @@ import com.example.mycontacts.presentation.contact.entry_screen.components.Entry
 @Composable
 fun EntryScreen(
     modifier: Modifier = Modifier,
+    navController: NavController,
     onNavigateUp: () -> Unit,
-    navigateBack: () -> Unit,
     viewModel: EntryScreenViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
@@ -33,6 +34,7 @@ fun EntryScreen(
     ) { innerPadding ->
         EntryBody(
             state = state,
+            navController = navController,
             modifier = modifier
                 .padding(innerPadding)
                 .background(MaterialTheme.colorScheme.background)

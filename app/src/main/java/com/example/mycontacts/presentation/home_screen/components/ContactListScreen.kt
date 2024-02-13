@@ -71,57 +71,6 @@ fun ContactList(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SearchComponent(
-    searchText: String,
-    isSearching: Boolean,
-    viewModel: HomeViewModel = hiltViewModel()
-) {
-    SearchBar(
-        query = searchText, // text showed on SearchBar
-        onQueryChange = viewModel::onSearchTextChange, // update the value of searchText
-        onSearch = viewModel::onSearchTextChange, // the callback to be invoked when the input service triggers the ImeAction.Search action
-        active = isSearching, // whether the user is searching or not
-        onActiveChange = {}, // the callback to be invoked when this search bar's active state is changed
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        placeholder = {
-            Text(
-                text = "Search a Contact",
-                style = TextStyle(
-                    color = Color.DarkGray,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
-                )
-            )
-        },
-
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Outlined.Search,
-                contentDescription = "",
-                tint = Red
-            )
-        },
-
-        trailingIcon = {
-            if (searchText.isNotEmpty()) {
-                IconButton(onClick = { viewModel.onSearchTextChange("") }) {
-                    Icon(
-                        imageVector = Icons.Outlined.Close,
-                        contentDescription = "",
-                        tint = Red
-                    )
-                }
-            }
-        },
-        shape = RoundedCornerShape(10.dp)
-    ) {
-    }
-}
-
 @Preview
 @Composable
 fun ContactListPreview() {
