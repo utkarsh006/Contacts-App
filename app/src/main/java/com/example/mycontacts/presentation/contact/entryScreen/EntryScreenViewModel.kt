@@ -13,8 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EntryScreenViewModel @Inject constructor(
-    private val contactsRepository: ContactsRepository
-): ViewModel() {
+    private val contactsRepository: ContactsRepository,
+) : ViewModel() {
     var contactUiState by mutableStateOf(ContactUiState())
         private set
 
@@ -22,8 +22,8 @@ class EntryScreenViewModel @Inject constructor(
         contactUiState = newContactUiState.copy(actionEnable = newContactUiState.isValid())
     }
 
-    suspend fun saveContact(){
-        if(contactUiState.isValid()) {
+    suspend fun saveContact() {
+        if (contactUiState.isValid()) {
             contactsRepository.insertContact(contactUiState.toContact())
         }
     }

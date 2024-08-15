@@ -3,6 +3,7 @@ package com.example.mycontacts.presentation.contact.entryScreen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -16,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -30,63 +32,42 @@ fun ContactInputForm(
     contactUiState: ContactUiState,
     modifier: Modifier = Modifier,
     onValueChange: (ContactUiState) -> Unit = {},
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        TextField(
+        InputField(
             value = contactUiState.firstName,
-            onValueChange = { onValueChange(contactUiState.copy(firstName = it)) },
-            label = { Text(stringResource(R.string.contact_name_input_first_name)) },
-            modifier = modifier.fillMaxWidth(),
-            enabled = enabled,
-            textStyle = TextStyle(color = Color.Black),
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-            )
-        )
+            modifier = modifier,
+            label = stringResource(R.string.contact_name_input_first_name)
+        ) {
+            onValueChange(contactUiState.copy(firstName = it))
+        }
 
-        TextField(
+        InputField(
             value = contactUiState.lastName,
-            onValueChange = { onValueChange(contactUiState.copy(lastName = it)) },
-            label = { Text(stringResource(R.string.contact_name_input_last_name)) },
-            modifier = modifier.fillMaxWidth(),
-            enabled = enabled,
-            textStyle = TextStyle(color = Color.Black),
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-            )
-        )
+            modifier = modifier,
+            label = stringResource(R.string.contact_name_input_last_name)
+        ) {
+            onValueChange(contactUiState.copy(lastName = it))
+        }
 
-        TextField(
+        InputField(
             value = contactUiState.address,
-            onValueChange = { onValueChange(contactUiState.copy(address = it)) },
-            label = { Text(stringResource(R.string.address)) },
-            modifier = modifier.fillMaxWidth(),
-            enabled = enabled,
-            textStyle = TextStyle(color = Color.Black),
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-            )
-        )
+            modifier = modifier,
+            label = stringResource(R.string.contact_name_input_address)
+        ) {
+            onValueChange(contactUiState.copy(address = it))
+        }
 
         val genderList = arrayOf("Male", "Female", "Other")
         var expanded by remember { mutableStateOf(false) }
 
         ExposedDropdownMenuBox(
             expanded = expanded,
-            onExpandedChange = {
-                expanded = !expanded
-            }
+            onExpandedChange = { expanded = !expanded }
         ) {
             TextField(
                 value = contactUiState.gender,
@@ -96,19 +77,21 @@ fun ContactInputForm(
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 modifier = modifier
                     .fillMaxWidth()
-                    .menuAnchor(),
+                    .menuAnchor()
+                    .clip(RoundedCornerShape(16.dp)),
                 enabled = enabled,
                 textStyle = TextStyle(color = Color.Black),
                 singleLine = true,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
                 )
             )
             if (enabled) {
                 ExposedDropdownMenu(
                     expanded = expanded,
-                    onDismissRequest = { expanded = false }
+                    onDismissRequest = { expanded = false },
                 ) {
                     genderList.forEach { item ->
                         DropdownMenuItem(
@@ -116,13 +99,38 @@ fun ContactInputForm(
                             onClick = {
                                 onValueChange(contactUiState.copy(gender = item))
                                 expanded = false
-                            }
+                            },
                         )
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+private fun InputField(
+    value: String,
+    modifier: Modifier = Modifier,
+    label: String,
+    onValueChange: (String) -> Unit,
+) {
+    TextField(
+        value = value,
+        onValueChange = { onValueChange(it) },
+        label = { Text(text = label) },
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp)),
+        textStyle = TextStyle(color = Color.Black),
+        singleLine = true,
+        maxLines = 1,
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.White,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
+        )
+    )
 }
 
 @Preview(showBackground = true)

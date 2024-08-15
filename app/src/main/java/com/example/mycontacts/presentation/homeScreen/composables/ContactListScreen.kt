@@ -14,8 +14,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.SearchBar
@@ -58,13 +58,13 @@ fun ContactList(
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
         } else {
-            LazyColumn() {
+            LazyColumn {
                 items(items = filteredList, key = { it.id }) { contact ->
                     ContactItems(
                         contact = contact,
                         onContactClick = onContactClick
                     )
-                    Divider()
+                    HorizontalDivider()
                 }
             }
         }

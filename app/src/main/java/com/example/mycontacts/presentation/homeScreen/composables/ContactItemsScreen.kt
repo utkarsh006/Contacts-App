@@ -32,43 +32,37 @@ fun ContactItems(
     onContactClick: (Contact) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Row(
         modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .clickable { onContactClick(contact) }
+            .padding(12.dp)
+            .fillMaxWidth()
     ) {
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .clickable { onContactClick(contact) }
-        ) {
-            Image(
-                painter = painterResource(R.drawable.ic_profile),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(50.dp)
-                    .clip(CircleShape)
+        Image(
+            painter = painterResource(R.drawable.ic_profile),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(50.dp)
+                .clip(CircleShape)
+        )
+
+        Spacer(modifier = modifier.width(8.dp))
+
+        Column(modifier = Modifier.fillMaxSize()) {
+            Text(
+                text = "${contact.firstName} ${contact.lastName}",
+                textAlign = TextAlign.Left,
+                modifier = modifier.align(Alignment.Start)
             )
 
-            Spacer(modifier = modifier.width(8.dp))
+            Spacer(modifier = modifier.height(5.dp))
 
-            Column(modifier = Modifier.fillMaxSize()) {
-                Text(
-                    text = "${contact.firstName} ${contact.lastName}",
-                    textAlign = TextAlign.Left,
-                    modifier = modifier.align(Alignment.Start)
-                )
-
-                Spacer(modifier = modifier.height(5.dp))
-
-                Text(
-                    text = contact.gender,
-                    textAlign = TextAlign.Left,
-                    modifier = modifier.align(Alignment.Start)
-                )
-            }
+            Text(
+                text = contact.gender,
+                textAlign = TextAlign.Left,
+                modifier = modifier.align(Alignment.Start)
+            )
         }
     }
 }
@@ -77,13 +71,7 @@ fun ContactItems(
 @Composable
 fun ContactPreview() {
     ContactItems(
-        contact = Contact(
-            1,
-            "Utkarsh",
-            "Saxena",
-            "GT Road",
-            "Male"
-        ),
+        contact = Contact(1, "Utkarsh", "Saxena", "GT Road", "Male"),
         onContactClick = {}
     )
 }

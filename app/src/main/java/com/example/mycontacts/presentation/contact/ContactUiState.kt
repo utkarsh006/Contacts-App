@@ -4,11 +4,11 @@ import com.example.mycontacts.domain.model.Contact
 
 data class ContactUiState(
     val id: Int = 0,
-    val firstName: String = "",
+    var firstName: String = "",
     val lastName: String = "",
     val address: String = "",
     val gender: String = "",
-    val actionEnable: Boolean = false
+    val actionEnable: Boolean = false,
 )
 
 fun ContactUiState.toContact(): Contact = Contact(
@@ -29,5 +29,5 @@ fun Contact.toContactUiState(actionEnable: Boolean = false): ContactUiState = Co
 )
 
 fun ContactUiState.isValid(): Boolean {
-    return firstName.isNotBlank()
+    return firstName.isNotBlank() && lastName.isNotBlank() && address.isNotBlank() && gender.isNotBlank()
 }

@@ -6,9 +6,9 @@
     <string name="edit_contact">Edit Contact</string>
     <string name="add_contact">Add Contact</string>
     <string name="no_contacts">The contacts list is empty \n Add a new contact</string>
-    <string name="contact_name_input_first_name">FirstName</string>
-    <string name="contact_name_input_last_name">LastName</string>
-    <string name="address">Address</string>
+    <string name="contact_name_input_first_name">Firstname</string>
+    <string name="contact_name_input_last_name">Lastname</string>
+    <string name="contact_name_input_address">Address</string>
     <string name="gender">Gender</string>
     <string name="save_contact">Save</string>
     <string name="delete_this_contact">Delete this contact?</string>
