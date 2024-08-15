@@ -3,18 +3,18 @@ package com.example.mycontacts.presentation.contact.detailScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -51,19 +51,7 @@ fun DetailsBody(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(R.drawable.ic_profile),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(100.dp)
-                .clip(CircleShape)
-                .border(
-                    width = 2.dp,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    shape = CircleShape
-                )
-        )
+        ContactPicture(modifier = Modifier)
 
         ContactInputForm(
             contactUiState = contactUiState,
@@ -76,6 +64,7 @@ fun DetailsBody(
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(imageVector = Icons.Default.Delete, contentDescription = null)
+                Spacer(modifier = Modifier.width(4.dp))
                 Text(text = stringResource(R.string.delete_button))
             }
         }
@@ -90,6 +79,23 @@ fun DetailsBody(
             )
         }
     }
+}
+
+@Composable
+fun ContactPicture(modifier: Modifier = Modifier) {
+    Image(
+        painter = painterResource(R.drawable.ic_profile),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = modifier
+            .size(100.dp)
+            .clip(CircleShape)
+            .border(
+                width = 2.dp,
+                color = MaterialTheme.colorScheme.onPrimary,
+                shape = CircleShape
+            )
+    )
 }
 
 @Preview(showBackground = true)

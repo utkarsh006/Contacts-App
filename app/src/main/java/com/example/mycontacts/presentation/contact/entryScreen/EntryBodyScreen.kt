@@ -1,27 +1,28 @@
 package com.example.mycontacts.presentation.contact.entryScreen
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
 import com.example.mycontacts.presentation.contact.ContactUiState
+import com.example.mycontacts.presentation.contact.detailScreen.ContactPicture
 
 @Composable
 fun EntryBody(
@@ -37,19 +38,7 @@ fun EntryBody(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(R.drawable.ic_profile),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(120.dp)
-                .clip(CircleShape)
-                .border(
-                    width = 2.dp,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    shape = CircleShape
-                )
-        )
+        ContactPicture(modifier = Modifier)
 
         ContactInputForm(
             contactUiState = contactUiState,
@@ -59,9 +48,16 @@ fun EntryBody(
         Button(
             onClick = onSaveClick,
             enabled = contactUiState.actionEnable,
-            modifier = modifier.fillMaxWidth()
+            modifier = modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = colorResource(R.color.teal_700)
+            )
         ) {
-            Text(text = stringResource(R.string.save_contact))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(imageVector = Icons.Default.Done, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = stringResource(R.string.save_contact))
+            }
         }
     }
 }
@@ -69,5 +65,12 @@ fun EntryBody(
 @Preview(showBackground = true)
 @Composable
 fun EntryBodyPreview() {
-    EntryBody(contactUiState = ContactUiState(), onContactValueChange = {}, onSaveClick = {})
+    EntryBody(contactUiState = ContactUiState(
+        id = 9695,
+        firstName = "Wiley Ochoa",
+        lastName = "Penelope Bartlett",
+        address = "persecuti",
+        gender = "signiferumque",
+        actionEnable = true
+    ), onContactValueChange = {}, onSaveClick = {})
 }
