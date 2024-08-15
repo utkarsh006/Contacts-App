@@ -5,12 +5,17 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -35,7 +40,7 @@ import com.example.mycontacts.presentation.contact.entryScreen.ContactInputForm
 fun DetailsBody(
     contactUiState: ContactUiState,
     onDelete: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
 
@@ -43,23 +48,22 @@ fun DetailsBody(
         modifier = modifier
             .padding(16.dp)
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(modifier = modifier.align(alignment = Alignment.CenterHorizontally)) {
-            Image(
-                painter = painterResource(R.drawable.ic_profile),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(100.dp)
-                    .clip(CircleShape)
-                    .border(
-                        width = 2.dp,
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        shape = CircleShape
-                    )
-            )
-        }
+        Image(
+            painter = painterResource(R.drawable.ic_profile),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(100.dp)
+                .clip(CircleShape)
+                .border(
+                    width = 2.dp,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    shape = CircleShape
+                )
+        )
 
         ContactInputForm(
             contactUiState = contactUiState,
@@ -70,7 +74,10 @@ fun DetailsBody(
             onClick = { deleteConfirmationRequired = true },
             modifier = modifier.fillMaxWidth()
         ) {
-            Text(text = stringResource(R.string.delete_button))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(imageVector = Icons.Default.Delete, contentDescription = null)
+                Text(text = stringResource(R.string.delete_button))
+            }
         }
 
         if (deleteConfirmationRequired) {

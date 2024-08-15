@@ -17,10 +17,10 @@ data class Contact(
             "$firstName$lastName",
             "$firstName $lastName",
             "${firstName.first()} ${lastName.first()}",
+            address
         )
-        return matchingCombinations.any() {
+        return matchingCombinations.any {
             it.contains(query, ignoreCase = true)
         }
     }
 }
-

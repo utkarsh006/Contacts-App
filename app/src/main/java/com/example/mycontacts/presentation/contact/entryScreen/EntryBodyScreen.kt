@@ -34,7 +34,7 @@ fun EntryBody(
     contactUiState: ContactUiState,
     onContactValueChange: (ContactUiState) -> Unit,
     onSaveClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
@@ -43,21 +43,19 @@ fun EntryBody(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-//        Box(modifier = modifier.align(alignment = Alignment.CenterHorizontally)) {
-            Image(
-                painter = painterResource(R.drawable.ic_profile),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(120.dp)
-                    .clip(CircleShape)
-                    .border(
-                        width = 2.dp,
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        shape = CircleShape
-                    )
-            )
-//        }
+        Image(
+            painter = painterResource(R.drawable.ic_profile),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(120.dp)
+                .clip(CircleShape)
+                .border(
+                    width = 2.dp,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    shape = CircleShape
+                )
+        )
 
         ContactInputForm(
             contactUiState = contactUiState,

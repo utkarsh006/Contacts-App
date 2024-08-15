@@ -41,7 +41,8 @@ fun ContactInputForm(
         InputField(
             value = contactUiState.firstName,
             modifier = modifier,
-            label = stringResource(R.string.contact_name_input_first_name)
+            label = stringResource(R.string.contact_name_input_first_name),
+            enabled = enabled
         ) {
             onValueChange(contactUiState.copy(firstName = it))
         }
@@ -49,7 +50,8 @@ fun ContactInputForm(
         InputField(
             value = contactUiState.lastName,
             modifier = modifier,
-            label = stringResource(R.string.contact_name_input_last_name)
+            label = stringResource(R.string.contact_name_input_last_name),
+            enabled = enabled
         ) {
             onValueChange(contactUiState.copy(lastName = it))
         }
@@ -57,7 +59,8 @@ fun ContactInputForm(
         InputField(
             value = contactUiState.address,
             modifier = modifier,
-            label = stringResource(R.string.contact_name_input_address)
+            label = stringResource(R.string.contact_name_input_address),
+            enabled = enabled
         ) {
             onValueChange(contactUiState.copy(address = it))
         }
@@ -85,7 +88,8 @@ fun ContactInputForm(
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
                 )
             )
             if (enabled) {
@@ -113,6 +117,7 @@ private fun InputField(
     value: String,
     modifier: Modifier = Modifier,
     label: String,
+    enabled: Boolean,
     onValueChange: (String) -> Unit,
 ) {
     TextField(
@@ -125,10 +130,12 @@ private fun InputField(
         textStyle = TextStyle(color = Color.Black),
         singleLine = true,
         maxLines = 1,
+        enabled = enabled,
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.White,
             focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
         )
     )
 }
