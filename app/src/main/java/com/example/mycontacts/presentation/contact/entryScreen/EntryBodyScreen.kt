@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
+import com.example.mycontacts.domain.model.Gender
 import com.example.mycontacts.presentation.contact.ContactUiState
 import com.example.mycontacts.presentation.contact.detailScreen.ContactPicture
 
@@ -70,7 +71,7 @@ fun EntryBodyPreview() {
         firstName = "Wiley Ochoa",
         lastName = "Penelope Bartlett",
         address = "persecuti",
-        gender = "signiferumque",
+        gender = Gender.MALE.type,
         actionEnable = true
     ), onContactValueChange = {}, onSaveClick = {})
 }

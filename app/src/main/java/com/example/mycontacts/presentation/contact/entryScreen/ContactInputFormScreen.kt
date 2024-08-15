@@ -1,8 +1,10 @@
 package com.example.mycontacts.presentation.contact.entryScreen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,11 +21,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycontacts.R
+import com.example.mycontacts.domain.model.Gender.FEMALE
+import com.example.mycontacts.domain.model.Gender.MALE
+import com.example.mycontacts.domain.model.Gender.OTHER
 import com.example.mycontacts.presentation.contact.ContactUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +71,7 @@ fun ContactInputForm(
             onValueChange(contactUiState.copy(address = it))
         }
 
-        val genderList = arrayOf("Male", "Female", "Other")
+        val genders = arrayOf(MALE, FEMALE, OTHER)
         var expanded by remember { mutableStateOf(false) }
 
         ExposedDropdownMenuBox(
@@ -97,11 +103,18 @@ fun ContactInputForm(
                     expanded = expanded,
                     onDismissRequest = { expanded = false },
                 ) {
-                    genderList.forEach { item ->
+                    genders.forEach { gender ->
                         DropdownMenuItem(
-                            text = { Text(text = item) },
+                            leadingIcon = {
+                                Image(
+                                    painter = painterResource(gender.icon),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            },
+                            text = { Text(text = gender.type) },
                             onClick = {
-                                onValueChange(contactUiState.copy(gender = item))
+                                onValueChange(contactUiState.copy(gender = gender.type))
                                 expanded = false
                             },
                         )

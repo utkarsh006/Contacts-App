@@ -47,7 +47,8 @@ fun ContactList(
 
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(40.dp))
-        SearchComponent(searchText, isSearching)
+
+        SearchComponent(searchQuery = searchText, isSearching = isSearching)
 
         Spacer(modifier = Modifier.height(15.dp))
 
@@ -60,10 +61,7 @@ fun ContactList(
         } else {
             LazyColumn {
                 items(items = filteredList, key = { it.id }) { contact ->
-                    ContactItems(
-                        contact = contact,
-                        onContactClick = onContactClick
-                    )
+                    ContactItem(contact = contact, onContactClick = onContactClick)
                     HorizontalDivider()
                 }
             }
@@ -74,12 +72,12 @@ fun ContactList(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchComponent(
-    searchText: String,
+    searchQuery: String,
     isSearching: Boolean,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     SearchBar(
-        query = searchText, // text showed on SearchBar
+        query = searchQuery, // text showed on SearchBar
         onQueryChange = viewModel::onSearchTextChange, // update the value of searchText
         onSearch = viewModel::onSearchTextChange, // the callback to be invoked when the input service triggers the ImeAction.Search action
         active = isSearching, // whether the user is searching or not
@@ -89,7 +87,7 @@ fun SearchComponent(
             .padding(16.dp),
         placeholder = {
             Text(
-                text = "Search a Contact",
+                text = "Search Contact",
                 style = TextStyle(
                     color = Color.DarkGray,
                     fontSize = 14.sp,
@@ -107,7 +105,7 @@ fun SearchComponent(
         },
 
         trailingIcon = {
-            if (searchText.isNotEmpty()) {
+            if (searchQuery.isNotEmpty()) {
                 IconButton(onClick = { viewModel.onSearchTextChange("") }) {
                     Icon(
                         imageVector = Icons.Outlined.Close,
