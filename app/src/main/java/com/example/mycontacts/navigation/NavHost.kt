@@ -7,6 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.mycontacts.presentation.authentication.AuthState
 import com.example.mycontacts.presentation.authentication.LoginPage
 import com.example.mycontacts.presentation.authentication.LoginPageDestination
 import com.example.mycontacts.presentation.authentication.SignupPage
@@ -24,10 +25,11 @@ import com.example.mycontacts.presentation.homeScreen.HomeScreenDestination
 fun ContactsNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
+    authState: AuthState = AuthState.Unauthenticated,
 ) {
     NavHost(
         navController = navController,
-        startDestination = LoginPageDestination.route,
+        startDestination = if (authState is AuthState.Authenticated) HomeScreenDestination.route else LoginPageDestination.route,
         modifier = modifier
     ) {
 
