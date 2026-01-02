@@ -7,6 +7,10 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.mycontacts.presentation.authentication.LoginPage
+import com.example.mycontacts.presentation.authentication.LoginPageDestination
+import com.example.mycontacts.presentation.authentication.SignupPage
+import com.example.mycontacts.presentation.authentication.SignupPageDestination
 import com.example.mycontacts.presentation.contact.editScreen.EditScreen
 import com.example.mycontacts.presentation.contact.editScreen.EditScreenDestination
 import com.example.mycontacts.presentation.contact.detailScreen.DetailsScreen
@@ -23,9 +27,35 @@ fun ContactsNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = HomeScreenDestination.route,
+        startDestination = LoginPageDestination.route,
         modifier = modifier
     ) {
+
+        composable(route = LoginPageDestination.route) {
+            LoginPage(
+                navigateToSignup = {
+                    navController.navigate(SignupPageDestination.route)
+                },
+                onLoginSuccess = {
+                    navController.navigate(HomeScreenDestination.route) {
+                        popUpTo(LoginPageDestination.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+
+        composable(route = SignupPageDestination.route) {
+            SignupPage(
+                navigateToLogin = {
+                    navController.navigate(LoginPageDestination.route)
+                },
+                onSignupSuccess = {
+                    navController.navigate(HomeScreenDestination.route) {
+                        popUpTo(SignupPageDestination.route) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(route = HomeScreenDestination.route) {
             HomeScreen(
                 navigateToEntryScreen = { navController.navigate(EntryScreenDestination.route) },
