@@ -2,6 +2,7 @@ package com.example.mycontacts
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,7 +39,8 @@ fun ContactsTopAppBar(
     title: String,
     navigateBack: Boolean,
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+    actions: @Composable () -> Unit = {}
 ) {
     if (navigateBack) {
         TopAppBar(
@@ -52,12 +54,14 @@ fun ContactsTopAppBar(
 
                     )
                 }
-            }
+            },
+            actions = { actions() }
         )
     } else {
         TopAppBar(
             title = { Text(title) },
-            modifier = modifier
+            modifier = modifier,
+            actions = { actions() }
         )
     }
 }

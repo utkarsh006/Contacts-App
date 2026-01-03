@@ -20,6 +20,8 @@ import com.example.mycontacts.presentation.contact.entryScreen.EntryScreen
 import com.example.mycontacts.presentation.contact.entryScreen.EntryScreenDestination
 import com.example.mycontacts.presentation.homeScreen.HomeScreen
 import com.example.mycontacts.presentation.homeScreen.HomeScreenDestination
+import com.example.mycontacts.presentation.profile.ProfileScreen
+import com.example.mycontacts.presentation.profile.ProfileScreenDestination
 
 @Composable
 fun ContactsNavHost(
@@ -63,7 +65,14 @@ fun ContactsNavHost(
                 navigateToEntryScreen = { navController.navigate(EntryScreenDestination.route) },
                 navigateToUpdateScreen = {
                     navController.navigate("${DetailsScreenDestination.route}/$it")
-                }
+                },
+                navigateToProfile = { navController.navigate(ProfileScreenDestination.route) }
+            )
+        }
+
+        composable(route = ProfileScreenDestination.route) {
+            ProfileScreen(
+                navigateBack = { navController.navigateUp() }
             )
         }
 
