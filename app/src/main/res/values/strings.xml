@@ -16,4 +16,5 @@
     <string name="delete">DELETE</string>
     <string name="delete_button">Delete</string>
     <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

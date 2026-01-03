@@ -72,7 +72,12 @@ fun ContactsNavHost(
 
         composable(route = ProfileScreenDestination.route) {
             ProfileScreen(
-                navigateBack = { navController.navigateUp() }
+                navigateBack = { navController.navigateUp() },
+                onLogout = {
+                    navController.navigate(LoginPageDestination.route) {
+                        popUpTo(HomeScreenDestination.route) { inclusive = true }
+                    }
+                }
             )
         }
 
