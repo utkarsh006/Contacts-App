@@ -5,11 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -71,7 +67,7 @@ fun SignupPage(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = (authState as AuthState.Error).message,
-                color = androidx.compose.material3.MaterialTheme.colorScheme.error
+                color = MaterialTheme.colorScheme.error
             )
         }
 
@@ -84,7 +80,7 @@ fun SignupPage(
             if (authState is AuthState.Loading) {
                 CircularProgressIndicator(
                     modifier = Modifier.height(16.dp),
-                    color = androidx.compose.material3.MaterialTheme.colorScheme.onPrimary
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             } else {
                 Text(text = "Create Account")
