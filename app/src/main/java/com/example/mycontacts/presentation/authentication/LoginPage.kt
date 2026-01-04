@@ -53,23 +53,17 @@ fun LoginPage(
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = email, onValueChange = {
-                email = it
-            },
-            label = {
-                Text(text = "Email")
-            })
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "Email") })
 
         Spacer(modifier = Modifier.height(8.dp))
 
         OutlinedTextField(
-            value = password, onValueChange = {
-                password = it
-            },
+            value = password,
+            onValueChange = { password = it },
             visualTransformation = PasswordVisualTransformation(),
-            label = {
-                Text(text = "Password")
-            }
+            label = { Text(text = "Password") }
         )
 
         // Show error message if any
@@ -84,9 +78,7 @@ fun LoginPage(
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = {
-                authViewModel.login(email, password)
-            },
+            onClick = { authViewModel.login(email, password) },
             enabled = authState !is AuthState.Loading
         ) {
             if (authState is AuthState.Loading) {
@@ -101,9 +93,8 @@ fun LoginPage(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        TextButton(onClick = {
-            navigateToSignup()
-        }) {
+        TextButton(
+            onClick = { navigateToSignup() }) {
             Text(text = "Don't have an account, Signup")
         }
     }

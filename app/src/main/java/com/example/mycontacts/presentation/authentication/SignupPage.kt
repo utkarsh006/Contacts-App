@@ -30,7 +30,7 @@ fun SignupPage(
     authViewModel: AuthViewModel = hiltViewModel(),
     navigateToLogin: () -> Unit,
     onSignupSuccess: () -> Unit = {}
-){
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val authState by authViewModel.authState.collectAsState()
@@ -52,23 +52,18 @@ fun SignupPage(
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = email, onValueChange = {
-                email = it
-            },
-            label = {
-                Text(text = "Email")
-            })
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "Email") }
+        )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         OutlinedTextField(
-            value = password, onValueChange = {
-                password = it
-            },
+            value = password,
+            onValueChange = { password = it },
             visualTransformation = PasswordVisualTransformation(),
-            label = {
-                Text(text = "Password")
-            }
+            label = { Text(text = "Password") }
         )
 
         // Show error message if any
@@ -83,9 +78,7 @@ fun SignupPage(
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = {
-                authViewModel.signup(email, password)
-            },
+            onClick = { authViewModel.signup(email, password) },
             enabled = authState !is AuthState.Loading
         ) {
             if (authState is AuthState.Loading) {
