@@ -9,6 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor() : ViewModel() {
+
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _authState = MutableStateFlow<AuthState>(AuthState.Loading)
@@ -22,33 +23,18 @@ class AuthViewModel @Inject constructor() : ViewModel() {
       Check for auth status
     */
     fun checkAuthStatus() {
-        if (auth.currentUser == null) {
-            _authState.value = AuthState.Unauthenticated
-        } else {
-            _authState.value = AuthState.Authenticated
-        }
+        _authState.value =
+            if (auth.currentUser == null) AuthState.Unauthenticated
+            else AuthState.Authenticated
     }
 
     /*
       Login functionality
     */
     fun login(email: String, password: String) {
-
-        if (email.isEmpty() || password.isEmpty()) {
-            _authState.value = AuthState.Error("Email or Password can't be empty")
-            return
-
+        authenticate(email, password) {
+            auth.signInWithEmailAndPassword(email, password)
         }
-        _authState.value = AuthState.Loading
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _authState.value = AuthState.Authenticated
-                } else {
-                    _authState.value =
-                        AuthState.Error(task.exception?.message ?: "Something went wrong")
-                }
-            }
     }
 
 
@@ -56,30 +42,39 @@ class AuthViewModel @Inject constructor() : ViewModel() {
       Signup functionality
     */
     fun signup(email: String, password: String) {
-
-        if (email.isEmpty() || password.isEmpty()) {
-            _authState.value = AuthState.Error("Email or Password can't be empty")
-            return
-
+        authenticate(email, password) {
+            auth.createUserWithEmailAndPassword(email, password)
         }
-        _authState.value = AuthState.Loading
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _authState.value = AuthState.Authenticated
-                } else {
-                    _authState.value =
-                        AuthState.Error(task.exception?.message ?: "Something went wrong")
-                }
-            }
     }
 
     /*
-      SignOut functionality
+       SignOut functionality
     */
     fun signOut() {
         auth.signOut()
         _authState.value = AuthState.Unauthenticated
     }
 
+    private fun authenticate(
+        email: String,
+        password: String,
+        action: () -> com.google.android.gms.tasks.Task<*>
+    ) {
+        if (email.isEmpty() || password.isEmpty()) {
+            _authState.value = AuthState.Error("Email or Password can't be empty")
+            return
+        }
+
+        _authState.value = AuthState.Loading
+
+        action().addOnCompleteListener { task ->
+            _authState.value =
+                if (task.isSuccessful) {
+                    AuthState.Authenticated
+                } else {
+                    AuthState.Error(task.exception?.message ?: "Something went wrong")
+                }
+        }
+    }
 }
+
