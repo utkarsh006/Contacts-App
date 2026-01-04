@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -65,13 +63,7 @@ fun LoginPage(
         )
 
         // Show error message if any
-        if (authState is AuthState.Error) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = (authState as AuthState.Error).message,
-                color = MaterialTheme.colorScheme.error
-            )
-        }
+        ErrorDisplay(authState)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -79,14 +71,7 @@ fun LoginPage(
             onClick = { authViewModel.login(email, password) },
             enabled = authState !is AuthState.Loading
         ) {
-            if (authState is AuthState.Loading) {
-                CircularProgressIndicator(
-                    modifier = Modifier.height(16.dp),
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-            } else {
-                Text(text = "Login")
-            }
+            LoadingButtonContent(authState, "Login")
         }
 
         Spacer(modifier = Modifier.height(8.dp))

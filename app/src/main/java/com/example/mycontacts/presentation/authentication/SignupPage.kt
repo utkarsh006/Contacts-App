@@ -63,13 +63,7 @@ fun SignupPage(
         )
 
         // Show error message if any
-        if (authState is AuthState.Error) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = (authState as AuthState.Error).message,
-                color = MaterialTheme.colorScheme.error
-            )
-        }
+        ErrorDisplay(authState)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -77,14 +71,7 @@ fun SignupPage(
             onClick = { authViewModel.signup(email, password) },
             enabled = authState !is AuthState.Loading
         ) {
-            if (authState is AuthState.Loading) {
-                CircularProgressIndicator(
-                    modifier = Modifier.height(16.dp),
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-            } else {
-                Text(text = "Create Account")
-            }
+            LoadingButtonContent(authState, "Create Account")
         }
 
         Spacer(modifier = Modifier.height(8.dp))
