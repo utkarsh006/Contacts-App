@@ -19,13 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
 import com.example.mycontacts.presentation.homeScreen.composables.HomeBody
-import com.example.mycontacts.presentation.profile.ProfileScreenDestination
-
-object HomeScreenDestination : NavigationDestination {
-    override val route = "home"
-}
 
 @Composable
 fun HomeScreen(

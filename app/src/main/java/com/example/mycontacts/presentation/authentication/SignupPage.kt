@@ -23,12 +23,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.mycontacts.navigation.NavigationDestination
 
-
-object SignupPageDestination : NavigationDestination {
-    override val route = "signup"
-}
 @Composable
 fun SignupPage(
     modifier: Modifier = Modifier,

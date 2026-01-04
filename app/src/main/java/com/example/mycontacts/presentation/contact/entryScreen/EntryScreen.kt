@@ -11,12 +11,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
+import com.example.mycontacts.navigation.routes.EntryScreenDestination
 import kotlinx.coroutines.launch
-
-object EntryScreenDestination : NavigationDestination {
-    override val route = "contact_entry"
-}
 
 @Composable
 fun EntryScreen(

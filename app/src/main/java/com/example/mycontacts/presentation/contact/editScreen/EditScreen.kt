@@ -11,15 +11,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mycontacts.ContactsTopAppBar
 import com.example.mycontacts.R
-import com.example.mycontacts.navigation.NavigationDestination
+import com.example.mycontacts.navigation.routes.EditScreenDestination
 import com.example.mycontacts.presentation.contact.entryScreen.EntryBody
 import kotlinx.coroutines.launch
-
-object EditScreenDestination : NavigationDestination {
-    override val route = "contact_edit"
-    const val contactIdArg = "contactId"
-    val routeWithArgs = "$route/{$contactIdArg}"
-}
 
 @Composable
 fun EditScreen(
