@@ -1,7 +1,7 @@
 [versions]
 agp = "8.1.0"
-kotlin = "1.9.21"
-ksp = "1.9.21-1.0.15"
+kotlin = "1.9.24"
+ksp = "1.9.24-1.0.20"
 hilt = "2.50"
 hiltCompiler = "2.50"
 composeBom = "2024.06.00"
@@ -15,6 +15,8 @@ hiltAndroid = "2.50"
 hiltNavigationCompose = "1.2.0"
 espresso = "3.6.1"
 testExtJunit = "1.2.1"
+googleGmsGoogleServices = "4.4.4"
+firebaseAuth = "22.3.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,9 +42,12 @@ androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navig
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "testExtJunit" }
 
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
